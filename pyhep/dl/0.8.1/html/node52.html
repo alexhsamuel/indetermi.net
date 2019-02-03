@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.4 Layouts</title>
+<META NAME="description" CONTENT="6.4 Layouts">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="previous" HREF="node47.html">
+<LINK REL="up" HREF="node44.html">
+<LINK REL="next" HREF="node53.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node51.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node44.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node53.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node51.html">6.3.4 Figure windows</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node44.html">6. Drawing</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node53.html">7. Plotting</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008400000000000000000">
+6.4 Layouts</A>
+</H1>
+
+<P>
+A <i>layout</i> is a composite figure that arranges several other
+figures.  A layout object is itself a figure, so it can be rendered
+directly by renderers, and included in other layouts.  The layout
+objects described here are in the <tt class="module">hep.draw</tt> module.
+
+<P>
+A simple layout class is <tt class="class">SplitLayout</tt>.  It arranges two figures
+next to each other, either horizontally or vertically.  A
+<tt class="class">SplitLayout</tt> allows you to specify the fractions of the entire
+drawing region in which to draw each of the two figures.  When you
+create a split layout, specify the orientation of the split, either
+<code>"vertical"</code> or <code>"horizontal"</code>, and the two figures.  Either
+figure may be <code>None</code>.  You may also specify the fraction of the
+first figure (the default is 0.5); the remainder is used to draw the
+second figure.
+
+<P>
+For example, this code creates a layout displaying <code>fig1</code> on the
+left, occupying three-quarters of the layout, and <code>fig2</code> on the
+right, occypting the remaining quarter.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; from hep.draw import *
+&gt;&gt;&gt; layout = SplitLayout("vertical", fig1, fig2, fraction=0.75)
+</pre></dl>
+
+<P>
+You can create more flexible layouts with a <tt class="class">BrickLayout</tt> object.
+A <i>brick layout</i> resembles a row of bricks: the region is divided
+into equally-spaced rows, each of which is divided into equally-spaced
+cells.  Each row may have a different number of cells.  To specify the
+arrangement of cells, provide a sequence containing the number of cells
+in each row.  The number of elements in the sequence is the number of
+rows.  For instance, to create a layout with three rows, of which the
+first and third are divided in half and the middle is divided into
+thirds,
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; layout = BrickLayout((2, 3, 2))
+</pre></dl>
+You may also specify style attributes as keyword arguments; as with
+other figures, a layout's style attributes are stored in a dictionary
+attribute <tt class="member">style</tt>.  For example, the <code>margin</code> style
+attribute controls the size of an empty margin inserted between rows and
+cells in a row.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; layout = BrickLayout((2, 3, 2), margin=12*point)
+</pre></dl>
+
+<P>
+You can index the figures in a brick layout by column and row index, for
+instance 
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; layout[0, 0] = fig1
+&gt;&gt;&gt; layout[1, 2] = fig2
+</pre></dl>
+Any entry that contains <code>None</code> (the default) is left empty.
+
+<P>
+A <tt class="class">GridLayout</tt> is a subclass of <tt class="class">BrickLayout</tt> in which all
+rows have the same number of cells.  This produces a grid of
+evenly-sized cells.  Specify the number of columns and rows when
+creating an instance.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; layout = GridLayout(2, 3)
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node51.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node44.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node53.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node51.html">6.3.4 Figure windows</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node44.html">6. Drawing</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node53.html">7. Plotting</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

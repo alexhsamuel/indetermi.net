@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.1 Plots and series</title>
+<META NAME="description" CONTENT="7.1 Plots and series">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node55.html">
+<LINK REL="previous" HREF="node53.html">
+<LINK REL="up" HREF="node53.html">
+<LINK REL="next" HREF="node55.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node53.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node53.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node55.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node53.html">7. Plotting</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node53.html">7. Plotting</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node55.html">7.2 Plot styles</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009100000000000000000">
+7.1 Plots and series</A>
+</H1>
+
+<P>
+A <tt class="class">hep.hist.plot.Plot</tt> object is a figure that displays a plot of
+histograms, functions, and similar data.  A plot can display either data
+with one independent variable, such as one-dimensional histograms and
+functions of one variable, or data with two independent variables, such
+as two-dimensional histograms and scatter plots.  More than one
+histogram, function, or scatter plot can be shown at the same time; each
+is called a <i>series</i>.  All series in the same plot share the same
+vertical and horizontal axes (and z range, for two-dimensional plots).
+
+<P>
+To create a plot object, specify the number of dimensions in the plot,
+either 1 or 2.  You may specify the series to plot as additional
+arguments.  For example, to create a plot overlaying a histogram and a
+function,
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; from hep.hist.plot import Plot
+&gt;&gt;&gt; plot = Plot(1, histogram, function)
+</pre></dl>
+You can also use the <tt class="method">append</tt> method to add a series to a plot,
+so the following code is equivalent:
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; plot = Plot(1)
+&gt;&gt;&gt; plot.append(histogram)
+&gt;&gt;&gt; plot.append(function)
+</pre></dl>
+
+<P>
+A <tt class="class">Plot</tt> object has a <tt class="member">series</tt> attribute, which is a list
+of series in the plot.  The series are not the histograms and functions
+themselves, but figure objects representing the series.  (Generally, you
+wouldn't to render these figures directly.)  
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; plot.series[0]
+&lt;hep.hist.plot.Histogram1DPlot object at 0xf6d01fcc&gt;
+</pre></dl>
+The plot object for a histogram references the histogram itself in its
+<tt class="member">histogram</tt> attribute.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; plot.series[0].histogram
+Histogram(EvenlyBinnedAxis(20, (0.0, 1.0)), bin_type=int, error_model='poisson')
+</pre></dl>
+
+<P>
+You can remove series from a plot simply by removing the corresponding
+element from the <tt class="member">series</tt> list.  Similarly, you can reorder
+elements in the list to change the stacking order of series in the
+plot. 
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node53.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node53.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node55.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node53.html">7. Plotting</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node53.html">7. Plotting</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node55.html">7.2 Plot styles</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

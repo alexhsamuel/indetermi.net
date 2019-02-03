@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.3.3 X window renderer</title>
+<META NAME="description" CONTENT="6.3.3 X window renderer">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node51.html">
+<LINK REL="previous" HREF="node49.html">
+<LINK REL="up" HREF="node47.html">
+<LINK REL="next" HREF="node51.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node49.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node47.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node51.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node49.html">6.3.2 Enhanced metafile renderer</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node47.html">6.3 Renderers</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node51.html">6.3.4 Figure windows</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008330000000000000000">
+6.3.3 X window renderer</A>
+</H2>
+
+<P>
+The class <tt class="class">hep.draw.xwindow.Window</tt> is a window that can render
+figures in an X window.  Each instance creates a new window.  
+
+<P>
+When you create a new <tt class="class">Window</tt> instance, provide the desired
+window size <i>in meters</i> when creating a new window.  You can
+resize an existing window with its <tt class="method">resize</tt> method, or simply by
+resizing the window through your window manager.  When creating a
+<tt class="class">Window</tt>, you may also provide a title for the title bar provided
+by your window manager, or set this later by assigning the
+<tt class="member">title</tt> attribute.
+
+<P>
+Each time you call the <tt class="method">render</tt> method, the window's contents are
+replaced by the specified figure.  Note that if the window's contents
+are destroyed (for example, if you resize the window), you will have to
+call <tt class="method">render</tt> again to restore the window's contents.  Also, if
+you modify the figure, the window contents do not reflect the changes
+until you call <tt class="method">render</tt> again.
+
+<P>
+<tt class="class">Window</tt> uses anti-aliasing and subpixel interpolation when
+rendering its contents.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node49.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node47.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node51.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node49.html">6.3.2 Enhanced metafile renderer</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node47.html">6.3 Renderers</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node51.html">6.3.4 Figure windows</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

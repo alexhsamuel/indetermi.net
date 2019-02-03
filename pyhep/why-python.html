@@ -1,0 +1,198 @@
+<html>
+<head>
+<title>PyHEP -- Why Python?</title>
+<meta name="Author" content="Alex Samuel">
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+</head>
+
+<body>
+
+<div class="title">Why Python?</div>
+
+<p>Here, I give some of the reasons I think that Python would be a good
+language for writing high energy physics software.  Currently, most such
+software is written in C++, using the Root libraries and either a
+compiler or the CINT interpeter; or in Fortran, using the CERNLIB
+libraries and PAW application and either a compiler or the KUIP
+interpreter.  I think Python is a better choice most of the time.</p>
+
+<ul>
+
+<li><b>I like Python.</b>
+
+<p>I like programming in Python.  For several years it has been the
+default language I choose for software projects.  I have used in the
+past, and continue to use, C++, C, Java, Fortran, Scheme, Perl,
+and others when the occasion calls for one of them, but I find that I
+unless there is a specific reason to prefer one of these, I can get the
+job done faster and more pleasantly in Python.</p>
+
+<p>As a physics grad student, a lot of the code I write is for physics
+data analysis and similar work.  I think I would be happier and more
+productive using Python for these, too.</p>
+
+
+<li><b>Dynamic languages are very effective for many programming
+tasks.</b>
+
+<p>High-level dynamic languages, like Python, Perl, and Lisp offer
+efficiency advantages over low-level languages like C++ and Fortran.</p>
+
+<p>High-level constructs, such as built-in container classes, iteration,
+lambda expressions, and such allow programmers to implement the same
+program in fewer lines of code.  This translates not only to less typing
+and less time, but less debugging too.  These languages generally
+include libraries with a great deal of useful functionality.  Since
+these languages are often interpreted, interactive use is often
+available and very handy for experimentation and testing.  </p>
+
+<p>Weak typing makes it easy to write general purpose code that can be
+used in unforeseen ways.  Instead of requiring "is-a" relationships, it
+allows for interchangeability of objects with "acts-like" relationships.
+This reduces code dependencies, and encourages programmers to think
+about interfaces less in a programming sense (a big source of
+hard-to-find bugs when working in languages like C++ that enfore type
+safety but not semantic contracts) and more in a semantic sense.</p>
+
+<p>Python's reference counting relieves programmers from tedious memory
+management, which accounts for a big share of lines of code and bugs.
+Sure, you can do this in C++, but there it has to be explicit (and is
+still tricky in places), while in Python it is free.  Large datasets can
+still be stored efficiently in memory using the <tt>array</tt> module or
+an extension class.</p>
+
+
+<li><b>Dynamic languages are faster than statically-compiled languages.</b>
+
+<p>This is clearly a preposterous claim.  Or is it?  </p>
+
+<p>For most physicists, I suspect the time it takes them to get results
+they need out of a computer is dominated by coding and debugging time,
+not execution time.  Compiled languages are optimized for the latter.
+Given a choice between spending a week writing a C++ program that runs
+in an hour, or spending a day writing a Python program that runs in four
+hours, which would you pick?  Using C++ is advantageous only if the
+program will be run very many times (for instance, event reconstruction
+software).</p>
+
+<p>In addition, it is a well-known fact that most software spends most
+of its time in a fairly small fraction of its code.  By judicious use of
+extension modules written in compiled languages (only <i>after</i>
+profiling, of course!), the Python version can often be made to run in
+the same time as the C++ version.  Then the setup, cleanup, bookkeeping,
+input decoding, output formatting, glue logic, monitoring, etc. can be
+written quickly and conveniently (and legibly!) in Python, without any
+noticeable loss of run-time efficiency.  </p>
+
+<p>High-level constructs and big standard libraries included in
+high-level languages free programmers from having to implement
+themselves efficient data structures and algorithms (which they are
+often too lazy to do).  When hashed dictionaries, linked lists,
+dynamically-sized arrays, efficient sorting, and fast domain allocation
+are provided in the language, programmers are less likely to use
+linear-time lookup, fixed-sized arrays, N^2 (or worse) sorting, and
+gazillions of calls to malloc.</p>
+
+<p>Dynamic languages also make it easy to implement certain kinds of
+optimizations that are much more cumbersome in C++ or Fortran.  For
+example, Python's built-in dictionaries, object properties, and the
+ability to replace object attributes at run-time make caching
+intermediate results very easy to implement.  Same goes for delayed
+evaluation, often eliminates a great deal of computational work without
+making code complicated.  Pickling makes it much easier to implement
+persistent caching, too.  Such optimizations can make the Python version
+run very much faster than the C++ version!</p.
+
+
+<li><b>Python is easy to learn, easy to write, and easy to read.</b>
+
+<p>One of Python's early goals was to be used as a teaching language.
+It takes less time to learn to use Python effectively than it does for
+other many other languages -- C++ to be sure, especially with STL
+included.  Experienced programmers can learn a lot of Python very
+quickly.  Often, they can read and understand the gist Python code
+without any previous exposure.  Python's syntax is "Englishy" in much
+the same way as Basic's, and Python's expression syntax resembles math
+formulae in the same way as Fortran's.  Contrast this to the typical
+Perl script, which to a non-Perl hacker looks only slightly better than
+a sendmail configuration file.</p>
+
+
+<li><b>Python is a stable and well-implemented language.</b>
+
+<p>Python has been around for a while, and is a stable and
+well-implemented language.</p>
+
+<p>The Python language itself does change, but in a well-organized way.
+The folks in charge of the language, Guido van Rossum and the other
+principal Python developers, generally make good decisions.  Changes are
+consistent with a well-thought-out set of principles and a coherent
+style.  The language is forward-compatible.  The language and
+differences among versions of it are clearly documented.  Deprecations
+and changes in semantics are well-managed over multiple releases.</p>
+
+<p>The implementation of Python is of high quality.  In years of working
+extensively with Python, I have encountered very, very few bugs in the
+interpreter or the standard libraries.  The language handles not only
+correct cases, but incorrect input, and provides useful error messages.
+Errors do not leave the interpreter in a broken state, so it is possible
+to recover from them both when working interactively and in
+programs.  The Python source code is clear (if you understand how
+language systems work), well-documented, and tested.  Releases are
+properly managed.</p>
+
+<p>CINT, the quasi-C++ interpreter used in Root, suffers from
+deficiencies that Python avoids.  It is unstable in many use cases,
+especially when faced with ill-formed input.  This requires frequent
+restarts of the interpreter, and often forces programmers to use strange
+code constructs to avoid bugs and limitations.  
+
+
+<li><b>Python uses the same interpreter when running interactively and
+when running programs.</b>
+
+<p>This guarantees the programs behave identically in both cases.  It is
+common practice to try some code out interactively, and if it works out,
+paste it into a file for use as a package.  This package can then trivially
+be imported into an interactive session for testing.</p>
+
+<p>While standard ANSI C++ is well-specified (overspecified?), CINT
+implements a poorly-documented modified subset of the C++ language.
+Therefore, standard C++ code often has to be modified for use with CINT.
+Even programs originally written for Root often include preprocessor
+directives that conditionalize code for CINT or a standard C++
+compiler.</p>
+
+<p>KUIP, the Fortran interpreter in PAW, also does not implement a
+language identical to that of a Fortran compiler.  (How can it?  There
+is a lot of variation among Fortran compilers.)</p>
+
+
+<li><b>Python supports functional programming.</b>
+
+<p>Many high energy physics software tasks are well-suited to functional
+programming.  Our data are often represented by long sequences of
+similar objects (events, particle candidates, tracks) on which the same
+object is repeated sequentially.  Often, the sequences are combined in
+complicated combinatoric arrangements.  A large fraction of analysis
+code often consists of implementing iteration and managing the
+combinatorics.  Traditional functional programming provides a much more
+elegant and efficient representation than procedural programming.  In
+addition, it is much easier for the system automatically to optimize the
+functional representation than the procedural one.  </p>
+
+<p>Python includes some nice features to support functional programming,
+including iterators, generators, lambda expressions, closures, bound
+methods, <tt>map</tt>, <tt>filter</tt>, <tt>reduce</tt>, and list
+comprehensions.  Of course Lisp dialects are far better for functional
+programming, but they are relatively inaccessible to those without the
+advantage of a computer science education.  Implementing these things in
+C++ requires an endless train of typographically-verbose template
+classes, adapters, and function objects.  In Fortran?  Forget about
+it.</p> 
+
+
+</ul>
+
+</body>
+</html>

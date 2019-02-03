@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  </head>
+  <body onload="replot('canvas')" onresize="replot('canvas')">
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+
+    <div class="navbar">
+      <div class="navbar-inner">
+        <a class="brand" href="#">Orbital Art</a> 
+        <!--
+        <ul class="nav">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+        -->
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row-fliud">
+        <div class="span4">
+          <form>
+            <fieldset>
+              <label>Presets</label>
+              <div class="btn-group">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  Planet
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="#" oncick="$('#year0').val('   87.969'); $('#radius0').val('   57.91'); replot()">Mercury</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year0').val('  224.701'); $('#radius0').val('  108.21'); replot()">Venus</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year0').val('  365.256'); $('#radius0').val('  149.60'); replot()">Earth</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year0').val('  686.98 '); $('#radius0').val('  227.92'); replot()">Mars</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year0').val(' 4432.6  '); $('#radius0').val('  778.57'); replot()">Jupiter</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year0').val('10759.2  '); $('#radius0').val(' 1433.5 '); replot()">Saturn</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year0').val('30685.   '); $('#radius0').val(' 2872.46'); replot()">Uranus</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year0').val('60190.   '); $('#radius0').val(' 4495.1 '); replot()">Neptune</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year0').val('90465.   '); $('#radius0').val(' 5869.7 '); replot()">Pluto</a></li>
+                </ul>
+              </div>
+              <div class="btn-group">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  Planet
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a tabindex="-1" href="#" onclick="$('#year1').val('   87.969'); $('#radius1').val('   57.91'); replot()">Mercury</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year1').val('  224.701'); $('#radius1').val('  108.21'); replot()">Venus</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year1').val('  365.256'); $('#radius1').val('  149.60'); replot()">Earth</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year1').val('  686.98 '); $('#radius1').val('  227.92'); replot()">Mars</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year1').val(' 4432.6  '); $('#radius1').val('  778.57'); replot()">Jupiter</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year1').val('10759.2  '); $('#radius1').val(' 1433.5 '); replot()">Saturn</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year1').val('30685.   '); $('#radius1').val(' 2872.46'); replot()">Uranus</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year1').val('60190.   '); $('#radius1').val(' 4495.1 '); replot()">Neptune</a></li>
+                  <li><a tabindex="-1" href="#" onclick="$('#year1').val('90465.   '); $('#radius1').val(' 5869.7 '); replot()">Pluto</a></li>
+                </ul>
+              </div>
+              <br/>
+              <br/>
+
+              <label>Orbital year</label>
+              <span class="control-group">
+                <div class="input-append">
+                  <input class="input-mini" id="year0" type="text" value="365.256" oninput="replot()">
+                  <span class="add-on">days</span>
+                </div>
+              </span>
+              <span class="control-group">
+                <div class="input-append">
+                  <input class="input-mini" id="year1" type="text" value="224.701" oninput="replot()">
+                  <span class="add-on">days</span>
+                </div>
+              </span>
+              <br/>
+
+              <label>Orbital radius</label>
+              <span class="control-group">
+                <div class="input-append">
+                  <input class="input-mini" id="radius0" type="text" value="149.60" oninput="replot()">
+                  <span class="add-on">Gm</span>
+                </div>
+              </span>
+              <span class="control-group">
+                <div class="input-append">
+                  <input class="input-mini" id="radius1" type="text" value="108.21" oninput="replot()">
+                  <span class="add-on">Gm</span>
+                </div>
+              </span>
+
+              <label>Drawing interval</label>
+              <span class="control-group">
+                <div class="input-append">
+                  <input class="input-mini" id="interval" type="text" value="75" oninput="replot()">
+                  <span class="add-on">per year</span>
+                </div>
+              </span>
+
+              <label>Simulation length</label>
+              <span class="control-group">
+                <div class="input-append">
+                  <input class="input-mini" id="years" type="text" value="8" oninput="replot()">
+                  <span class="add-on">years</span>
+                </div>
+              </span>
+
+            </fieldset>
+          </form>
+        </div>
+        <div class="span8">
+          <canvas width="600px" height="600px" id="canvas"/>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      function getValue(el) {
+        var val = Number(el.val())
+        if (isNaN(val)) {
+          el.parent().parent().addClass("error")
+        }
+        else {
+          el.parent().parent().removeClass("error")
+        }
+        return val
+      }
+
+      function replot() {
+        var y0 = getValue($('#year0'))
+        var y1 = getValue($('#year1'))
+        var r0 = getValue($('#radius0'))
+        var r1 = getValue($('#radius1'))
+        var dt = y0 / getValue($('#interval'))
+        var T  = y0 * getValue($('#years'))
+        var canvas = $('#canvas').get(0)
+        plot(canvas, y0, y1, r0, r1, T, dt)
+      }
+
+      function plot(canvas, year0, year1, radius0, radius1, T, dt) {
+        var xs = canvas.width
+        var ys = canvas.height
+
+        // Scale the orbital radii to fit in the canvas.
+        var scale = Math.min(xs, ys) / 2 / Math.max(radius0, radius1)
+        var r0 = radius0 * scale
+        var r1 = radius1 * scale
+
+        // Set up to draw.
+        var ctx = canvas.getContext("2d")
+        ctx.clearRect(0, 0, xs, ys)
+        ctx.strokeStyle = "#000000"
+        ctx.lineWidth = 1
+
+        // Loop over days, advancing time and the two orbital angles.
+        ctx.beginPath()
+        for (var t = 0, 
+               theta0 = 0, 
+               theta1 = 0; 
+             t < T; 
+             t += dt, 
+               theta0 -= 2 * Math.PI * dt / year0, 
+               theta1 -= 2 * Math.PI * dt / year1) {
+          // Connect the positions of the two planets.
+          ctx.moveTo(xs / 2 + r0 * Math.cos(theta0), ys / 2 + r0 * Math.sin(theta0))
+          ctx.lineTo(xs / 2 + r1 * Math.cos(theta1), ys / 2 + r1 * Math.sin(theta1))
+        }
+
+        // Actually draw.
+        ctx.stroke()
+      }
+    </script>
+
+  </body>
+</html>

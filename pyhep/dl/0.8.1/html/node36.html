@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.3 Accessing file information</title>
+<META NAME="description" CONTENT="5.3 Accessing file information">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node37.html">
+<LINK REL="previous" HREF="node35.html">
+<LINK REL="up" HREF="node33.html">
+<LINK REL="next" HREF="node37.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node35.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node33.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node37.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node35.html">5.2 Methods for accessing</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node37.html">5.4 Storing data</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007300000000000000000">
+5.3 Accessing file information</A>
+</H1>
+
+<P>
+A directory object's <tt class="method">getinfo</tt> method returns an <tt class="class">Info</tt>
+object containing information about the file.  The <tt class="class">Info</tt> object
+is constructed without loading the file.
+
+<P>
+All <tt class="class">Info</tt> objects have an attribute <tt class="member">type</tt>, which is the
+file type for that file.  See above for a discussion of file types.  An
+<tt class="class">Info</tt> object may have additional attributes, depending on the
+type of directory object it was obtained from.
+
+<P>
+File system <tt class="class">Info</tt> objects also contain attributes <tt class="member">path</tt>,
+<tt class="member">file_size</tt>, <tt class="member">user_id</tt>, <tt class="member">group_id</tt>,
+<tt class="member">access_mode</tt>, and <tt class="member">modification_time</tt>.
+
+<P>
+The code below demonstrates the use of <tt class="method">getinfo</tt> to print a
+listing of a file system directory.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; def listFSDir(directory):
+...   for key in directory.keys(known_types=False):
+...     info = directory.getinfo(key)
+...     print ("%-24s (%-12s)  %8d bytes, mode %06o, owner %4d"
+...            % (key, info.type, info.file_size, info.access_mode, info.user_id))
+...
+&gt;&gt;&gt; listFSDir(cwd) 
+readme.txt               (text        )        50 bytes, mode 000640, owner  500
+plot.pickle              (pickle      )      3980 bytes, mode 000640, owner  500
+reco-hist.pickle         (pickle      )      1252 bytes, mode 000640, owner  500
+recodata                 (directory   )      4096 bytes, mode 000750, owner  500
+histogram.pickle         (pickle      )      1257 bytes, mode 000640, owner  500
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node35.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node33.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node37.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node35.html">5.2 Methods for accessing</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node37.html">5.4 Storing data</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

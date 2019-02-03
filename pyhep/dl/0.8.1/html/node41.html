@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.6 Working with Root files</title>
+<META NAME="description" CONTENT="5.6 Working with Root files">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="previous" HREF="node38.html">
+<LINK REL="up" HREF="node33.html">
+<LINK REL="next" HREF="node42.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node40.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node33.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node42.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node40.html">5.5.2 N-tuples</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node42.html">5.6.1 The hep.root module</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007600000000000000000">
+5.6 Working with Root files</A>
+</H1>
+
+<P>
+Root set of libraries and programs for high energy physics analysis.
+Among other things, Root provides a file format for histograms, n-tuples
+(which are called ``trees'' in Root), and other data objects.   PyHEP 
+provides partial data and file compatibility with Root.
+
+<P>
+You can use directory objects, as described above, to access contents of
+Root files.  An Root file is represented by a directory object, as is a
+subdirectory in an Root file.
+
+<P>
+For example, to create a new Root file in the directory represented by
+<code>data_dir</code> containing two histograms,
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; data_dir["histograms.root"] = { "hist1": histogram1,
+...                                 "hist2": histogram2 }
+</pre></dl>
+To create a new, empty Root file or return the existing one if it
+exists,
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; root_file = data_dir.setdefault("histograms.root", {})
+</pre></dl>
+
+<P>
+The API and capabilities of <tt class="module">hep.root</tt> are very similar to those
+of <tt class="module">hep.cernlib.hbook</tt>.  A program written for one can be used
+with the other with minimal modification, and it is easy to write
+functions, scripts, or programs that can work files from either format.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node42.html">5.6.1 The <tt class="module">hep.root</tt> module</a>
+<LI><A href="node43.html">5.6.2 Trees</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node40.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node33.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node42.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node40.html">5.5.2 N-tuples</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node42.html">5.6.1 The hep.root module</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

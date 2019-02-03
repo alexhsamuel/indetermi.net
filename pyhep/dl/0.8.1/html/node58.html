@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.2.3 Styles for 1D histograms plot series</title>
+<META NAME="description" CONTENT="7.2.3 Styles for 1D histograms plot series">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node59.html">
+<LINK REL="previous" HREF="node57.html">
+<LINK REL="up" HREF="node55.html">
+<LINK REL="next" HREF="node59.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node57.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node55.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node59.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node57.html">7.2.2 Styles for all</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node55.html">7.2 Plot styles</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node59.html">7.2.4 Styles for 2D</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009230000000000000000">
+7.2.3 Styles for 1D histograms plot series</A>
+</H2>
+
+<P>
+These style attributes are specific to plot series of one-dimensional
+histograms.
+
+<P>
+
+<UL>
+<LI><code>"bins"</code>: The style to use to draw bins.  These bin styles
+ may be used:
+ 
+<UL>
+<LI><code>"points"</code> (the default): Draws a marker and/or cross at
+  the value of each bin.
+
+<P>
+</LI>
+<LI><code>"skyline"</code>: Draws the traditional outline or filled region
+  representing bin contents.
+
+<P>
+</LI>
+</UL>
+
+<P>
+</LI>
+<LI><code>"bin_center"</code>: In the <code>"points"</code> bin style, the
+ fractional horizontal location within the bin to draw the marker and
+ the vertical error bar.  The value should be between zero and one.  The
+ default is 0.5, which centers the marker and error bar in the bin.
+ When superimposing two series with identical binning and similar bin
+ contents, it is useful to offset the error bars of one or both to
+ prevent them from overlapping.
+
+<P>
+</LI>
+<LI><code>"cross"</code>: In the <code>"points"</code> bin style, whether to
+ draw a horizontal line in each bin.  The position of the line shows the
+ bin contents, and the length of the line shows the bin width.
+
+<P>
+</LI>
+<LI><code>"error_hatch_color"</code>, <code>"error_hatch_pitch"</code>,
+ <code>"error_hatch_thickness"</code>: In the <code>"skyline"</code> bin style, bin
+ errors are depicted with a 45-degree hatch pattern.  These style
+ attributes control the color, spacing, and thickness of the hacth
+ pattern.  If the color is <code>None</code>, the hatch pattern uses the fill
+ pattern for errors above the bin contents, and the background color
+ below the bin contents.
+
+<P>
+</LI>
+<LI><code>"fill_color"</code>: In the <code>"skyline"</code> bin style, the color
+ with which to fill the bins.  If <code>None</code>, the bins are not filled.
+
+<P>
+</LI>
+<LI><code>"line_color"</code>: In the <code>"skyline"</code> bin style, the color
+ for the outline of the bin contetns.  If <code>None</code>, no outline is
+ drawn.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node57.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node55.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node59.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node57.html">7.2.2 Styles for all</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node55.html">7.2 Plot styles</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node59.html">7.2.4 Styles for 2D</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

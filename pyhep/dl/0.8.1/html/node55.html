@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.2 Plot styles</title>
+<META NAME="description" CONTENT="7.2 Plot styles">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node61.html">
+<LINK REL="previous" HREF="node54.html">
+<LINK REL="up" HREF="node53.html">
+<LINK REL="next" HREF="node56.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node54.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node53.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node56.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node54.html">7.1 Plots and series</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node53.html">7. Plotting</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node56.html">7.2.1 Styles for plot</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION009200000000000000000">
+7.2 Plot styles</A>
+</H1>
+
+<P>
+<i>Styles</i> control the visual attributes of plots.  Style
+information is not stored in a histogram, which only contains
+statistical data and annotations (such as units).  Instead, style is
+stored in a plot.
+
+<P>
+Each plot has a <tt class="member">style</tt> attribute, which is a dictionary
+containing style items.  Keys in the style dictionary are names of style
+attributes.  Any style attributes may be stored in the style dictionary;
+different plot types use different style attributes to control their
+output.
+
+<P>
+A <tt class="class">Plot</tt> object has a <tt class="member">style</tt> attribute; in addition, the
+plot object representing each series in a plot has a <tt class="member">style</tt>
+attribute as well.  This allows different styles to be used for each
+series in a plot (for instance, to assign a different color to each
+series).  If a particular style attribute is missing from a series's
+style dictionary, it uses the value from the parent <tt class="class">Plot</tt>
+object's style dictionary.  Thus, if you set a style attribute in a
+<tt class="class">Plot</tt>, it will apply to each series in that plot, except for a
+series which overrides it in its own style dictionary.
+
+<P>
+Suppose you have a plot showing two histograms.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; plot = Plot(1, histogram1, histogram2)
+</pre></dl>
+To draw 2 mm dots at bin contents for both series in the plot, set the
+<code>"marker"</code> and <code>"marker size"</code> attributes in the plot's
+style dictionary.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; plot.style["marker"] = "filled dot"
+&gt;&gt;&gt; plot.style["marker_size"] = 0.002
+</pre></dl>
+To draw the second series (but not the first) in red, set the
+<code>"color"</code> attribute in that series's style dictionary.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; plot.series[1].style["color"] = hep.draw.Color(0.7, 0, 0)
+</pre></dl>
+
+<P>
+You can set style attributes for a <tt class="class">Plot</tt> when you create it, by
+adding keyword arguments.  Similarly, you can set style attributes for a
+series by adding keyword arguments to <tt class="method">append</tt>.  For example,
+this code produces the same plot as the code above does:
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; plot = Plot(1, marker="filled dot", marker_size=0.002)
+&gt;&gt;&gt; plot.append(histogram1)
+&gt;&gt;&gt; plot.append(histogram2, color=Color(0.7, 0, 0))
+</pre></dl>
+
+<P>
+The sections below list style attributes used by  PyHEP's plot classes
+to determine the visual style of plots.  For an explanation of how to
+specify fonts, colors, marker styles, <i>etc.</i>, see the chapter on
+drawing. 
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node56.html">7.2.1 Styles for plot objects</a>
+<LI><A href="node57.html">7.2.2 Styles for all plot series</a>
+<LI><A href="node58.html">7.2.3 Styles for 1D histograms plot series</a>
+<LI><A href="node59.html">7.2.4 Styles for 2D histograms plot series</a>
+<LI><A href="node60.html">7.2.5 Styles for function plot series</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node54.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node53.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node56.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node54.html">7.1 Plots and series</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node53.html">7. Plotting</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node56.html">7.2.1 Styles for plot</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

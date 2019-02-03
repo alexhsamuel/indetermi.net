@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.4 Storing data</title>
+<META NAME="description" CONTENT="5.4 Storing data">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node38.html">
+<LINK REL="previous" HREF="node36.html">
+<LINK REL="up" HREF="node33.html">
+<LINK REL="next" HREF="node38.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node36.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node33.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node38.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node36.html">5.3 Accessing file information</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node38.html">5.5 Working with HBOOK</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007400000000000000000">
+5.4 Storing data</A>
+</H1>
+
+<P>
+To store data in a file, simply set a key in the dictionary object.  For
+file system directories, the file type is determined from the key's
+extension.  The file type must support the data type you provide.  For
+example,
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; text = "Hello, world."
+&gt;&gt;&gt; cwd["hello.txt"] = text
+&gt;&gt;&gt; cwd["hello.pickle"] = text
+&gt;&gt;&gt; cwd["hello.root"] = text
+Traceback (most recent call last):
+...
+AttributeError: 'str' object has no attribute 'keys'
+</pre></dl>
+Here, the first assignment stores the text in a plain text file, and the
+second stores it as a pickled Python string.  The third assignment
+fails, since it doesn't make sense to create a Root file with a string.
+
+<P>
+You can also use the <tt class="method">set</tt> method to set keys.  With
+<tt class="method">set</tt>, you can specify keyword arguments.  For example, you can
+override the file type determination with the <code>type</code> argument.
+For example, this assignment tell  PyHEP to store a plain text file,
+even though the extension <span class="file">.log</span> is not known.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; cwd.set("hello.log", text,type="text")
+</pre></dl>
+
+<P>
+You can other standard map methods to modify the directory's contents as
+well: <tt class="method">setdefault</tt>, <tt class="method">update</tt>, and <tt class="method">popitem</tt>.  To
+delete files, use the <code>del</code> statement or the directory's
+<tt class="method">delete</tt> method.  The <tt class="method">clear</tt> method empties the
+directory.
+
+<P>
+These methods can take additional keyword arguments that controls how
+directories are modified:
+
+<UL>
+<LI><code>deldirs</code> (true by default): Allow automatic recursive
+ deletion of directories and their contents.
+
+<P>
+</LI>
+<LI><code>makedirs</code> (true by default): Create missing intermediate
+ subdirectories automatically when setting a key (like ``<code>mkdir
+ -p</code>''). 
+
+<P>
+</LI>
+<LI><code>replace</code> (true by default): If true, allow keys to be
+ replaced.  Otherwise, raise an exception when setting a key that
+ already exists.
+
+<P>
+</LI>
+<LI><code>replacedirs</code> (false by default): Like <code>replace</code> but
+ applies to subdirectories.
+</LI>
+</UL>
+
+<P>
+You can also create a directory by setting a key.  Since a directory is
+represented by a map, it looks like this:
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; cwd["subdir"] = {}
+</pre></dl>
+You may populate the map you assign; the items are stored as files in
+the new directory.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; cwd["subdir"] = { "contents.txt": "calibration constants", 
+...                   "constants.pickle": (10, 11, 12) }
+</pre></dl>
+To create a directory if it doesn't exist, or obtain it if it does, use
+<tt class="method">setdefault</tt>:
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; output_dir = cwd.setdefault("output", {})
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node36.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node33.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node38.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node36.html">5.3 Accessing file information</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node38.html">5.5 Working with HBOOK</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

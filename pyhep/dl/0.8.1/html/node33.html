@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5. Files and directories</title>
+<META NAME="description" CONTENT="5. Files and directories">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node44.html">
+<LINK REL="previous" HREF="node26.html">
+<LINK REL="up" HREF="pyhep.html">
+<LINK REL="next" HREF="node34.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node32.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="pyhep.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node34.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node32.html">4.5 Other ways to</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="pyhep.html">PyHEP Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node34.html">5.1 File types</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007000000000000000000">
+5. Files and directories</A>
+</H1>
+
+<P>
+PyHEP provides a uniform interface for accessing and manipulating
+directories and their contents.  The same interface can be used not only
+with file system directories, but directories in Root and HBOOK files as
+well.  
+
+<P>
+Directory objects satisfy Python's map protocol, very similar to
+built-in <code>dict</code> objects.  The keys in a directory are the names of
+items in the directory.  To find the names in a directory, simply call
+the <tt class="method">keys</tt> method.  For supported file types (discussed below),
+the corresponding values are the contents of the files.  To load a file,
+simply get the value using the subscript operator (square brackets) or
+<tt class="method">get</tt> method.
+
+<P>
+Here are some examples of using  PyHEP's directory objects.  Suppose we
+are in a directory with these contents, which are various types of files
+containing 
+<dl><dd><pre class="verbatim">
+&gt; ls -l
+total 16
+-rw-r-----  1 samuel samuel 1257 Dec  6 15:39 histogram.pickle
+-rw-r-----  1 samuel samuel 3980 Dec  6 15:39 plot.pickle
+-rw-r-----  1 samuel samuel   50 Dec  7 19:11 readme.txt
+drwxr-x---  2 samuel samuel 4096 Dec  6 15:43 recodata
+&gt; ls -l recodata/
+total 12
+-rw-r-----  1 samuel samuel 4384 Dec  6 15:43 reco.root
+-rw-r-----  1 samuel samuel  683 Dec  6 15:34 tracks.table
+</pre></dl>
+
+<P>
+Now, let's start Python.  First, we import the file system directory
+module, <tt class="module">hep.fs</tt>, and construct a directory object, an instance
+of <tt class="class">FileSystemDirectory</tt>, for the current working directory.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import hep.fs
+&gt;&gt;&gt; cwd = hep.fs.getdir(".")
+&gt;&gt;&gt; cwd
+FileSystemDirectory('/home/samuel/data', writable=True)
+</pre></dl>
+
+<P>
+Using the <tt class="method">keys</tt> method, we can get the names of files in the
+directory.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; print cwd.keys()
+['readme.txt', 'plot.pickle', 'recodata', 'histogram.pickle']
+</pre></dl>
+
+<P>
+Directory objects have an additional <tt class="method">list</tt> method, which prints
+out directory entries and their types.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; cwd.list()
+histogram.pickle    : pickle
+plot.pickle         : pickle
+readme.txt          : text
+recodata            : directory
+</pre></dl>
+
+<P>
+Directory methods that produce or operate on the keys in the directory
+can be given extra arguments.  For instance, the <code>recursive</code> option
+will show keys in subdirectories as well.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; cwd.list(recursive=True)
+histogram.pickle            : pickle
+plot.pickle                 : pickle
+readme.txt                  : text
+recodata                    : directory
+recodata/reco.root          : Root file
+recodata/reco.root/hist1    : 1D histogram
+recodata/reco.root/hist2    : 1D histogram
+recodata/tracks.table       : table
+</pre></dl>
+Notice here that <tt class="method">list</tt> now lists the contents of the
+<span class="file">recodata</span> subdirectory.  One of the files in that directory is a
+Root file named <span class="file">reco.root</span>.  Since a Root file has an internal
+directory structure,  PyHEP treats it as a directory itself and the
+listing descends into that file too.
+
+<P>
+Retrieving an object is as simple as looking up a key in a dictionary.
+ PyHEP determines the file type from its extension, and loads the object
+into memory, creating a Python object of the appropriate type to
+represent it.  For instance, a file with the extension <span class="file">.pickle</span> is
+assumed to contain a Python pickle (see the documentation for the
+standard <tt class="module">pickle</tt> and <tt class="module">cPickle</tt> for details).  For
+example, to retrieve the contents of <span class="file">histogram.pickle</span>,
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; histogram = cwd["histogram.pickle"]
+&gt;&gt;&gt; histogram
+Histogram(EvenlyBinnedAxis(30, (0.0, 30.0), name='energy', units='GeV'), bin_type=float, error_model='asymmetric')
+</pre></dl>
+
+<P>
+Obtain an object representing a subdirectory, whether an actual file
+system subdirectory or a virtual subdirectory in a Root or HBOOK file,
+in the same way.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; subdir = cwd["recodata"]
+&gt;&gt;&gt; print subdir.keys()
+['reco.root', 'tracks.table']
+&gt;&gt;&gt; rootfile = subdir["reco.root"]
+&gt;&gt;&gt; print rootfile.keys()
+['hist1', 'hist2']
+</pre></dl>
+Likewise for retrieving an object from inside a Root file.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; histogram = rootfile["hist2"]
+</pre></dl>
+
+<P>
+You don't have to hang on to the intermediate directory objects if you
+only want one object deep in a hierarchy of subdirectories, Root, and
+HBOOK files.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; histogram = cwd["recodata"]["reco.root"]["hist2"]
+</pre></dl>
+Even simpler, you can specify multiple levels with a single indexing
+operation by separating keys with forward slashes.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; histogram = cwd["recodata/reco.root/hist2"]
+</pre></dl>
+Note that you <i>can not</i> use <span class="file">..</span> to move up in the directory
+tree, or specify absolute paths, as these operations break the model of
+nested map objects.
+
+<P>
+To store an object to disk, simply assign a new item to the directory
+object as you would with a dictionary.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; cwd["reco-hist.pickle"] = histogram
+&gt;&gt;&gt; print cwd.keys()
+['readme.txt', 'plot.pickle', 'reco-hist.pickle', 'recodata', 'histogram.pickle']
+</pre></dl>
+Of course, the file type inferred from the key's extension must support
+storing the type of the value object you provide.  Python pickles can
+store most Python objects, including collections such as tuples and
+dictionaries, and most  PyHEP objects.
+
+<P>
+Generally, the Python object is not associated with the file once it's
+loaded.  If you change the Python object and want the changes reflected
+in the file, you must store it back.  Directories are an exception to
+this: if you add a new item to the directory, it goes immediately on
+disk.  Tables are also an exception to this.
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node34.html">5.1 File types</a>
+<LI><A href="node35.html">5.2 Methods for accessing keys and values</a>
+<LI><A href="node36.html">5.3 Accessing file information</a>
+<LI><A href="node37.html">5.4 Storing data</a>
+<LI><A href="node38.html">5.5 Working with HBOOK files</a>
+<UL>
+<LI><A href="node39.html">5.5.1 The <tt class="module">hep.cernlib.hbook</tt> module</a>
+<LI><A href="node40.html">5.5.2 N-tuples</a>
+</ul>
+<LI><A href="node41.html">5.6 Working with Root files</a>
+<UL>
+<LI><A href="node42.html">5.6.1 The <tt class="module">hep.root</tt> module</a>
+<LI><A href="node43.html">5.6.2 Trees</a>
+</ul></ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node32.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="pyhep.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node34.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node32.html">4.5 Other ways to</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="pyhep.html">PyHEP Tutorial</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node34.html">5.1 File types</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

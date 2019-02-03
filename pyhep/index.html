@@ -1,0 +1,114 @@
+<html>
+ <head>
+  <title>PyHEP -- Python tools for High Energy Physics</title>
+  <meta name="Author" content="Alex Samuel">
+  <link rel="stylesheet" type="text/css" href="stylesheet.css">
+ </head>
+
+ <body class="main">
+  <hr noshade>
+  <div class="title">PyHEP -- Python tools for High Energy Physics</div>
+  <div class="subtitle">Making plots is fun again!</div>
+  <hr noshade>
+
+  <h3>Download</h3>
+ 
+  <p>See the <a href="dl">download page</a> to download the PyHEP source
+  or i386 binary RPMs, as well as docmentation (including browseable
+  HTML).</p>
+
+  <hr noshade>
+
+  <h3>Introduction</h3>
+ 
+  <p>PyHEP is a set of <a href="http://www.python.org">Python</a>
+  packages and extension modules to provide support for high energy
+  physics data analysis in Python.  PyHEP is written by <a
+  href="http://www.hep.caltech.edu/~samuel">Alex Samuel</a>, <a
+  href="mailto:alex@alexsamuel.net"><tt>alex@alexsamuel.net</tt></a>.
+  </p>
+
+  <p>Why Python?  I have written down some of the reasons I have given
+  up PAW and Root, and written PyHEP (and not SchemeHep, TclHep,
+  PerlHep, or yet another C++ HEP library) <a
+  href="why-python.html">here</a>.
+  </p>
+
+  <p>Currenly, the major components of PyHEP include are:
+   <ul>
+    <li>one- and multidimensional histograms</li>
+    <li>flat-format data tables, similar to "ntuples" in other HEP
+    packages</li>
+    <li>the ability to read and write HBOOK and <a
+    href="http://root.cern.ch">Root</a> files 
+   </ul>
+  In addition, minor components provide support for Lorentz
+  four-vectors, some miscellaneous numerical and functional-programming
+  constructs, some XML support, etc.
+  </p>
+
+  <hr noshade>
+
+  <h3>Goals</h3>
+
+  <p>My main goals in writing PyHEP are:
+   <ul>
+    <li><p>To produce Python software components necessary for HEP data
+    handling and analysis.  </p></li>
+
+    <li><p>To establish Python interfaces for common HEP functions and
+    objects.  The interfaces should be fully "Pythonesque," not simply
+    wrappers around existing C++ or Fortran APIs currently in use.
+    </p></li>
+
+    <li><p>To develop a system that allows very fast and convenient
+    interactive use, and also provides a well-designed API suitable for
+    writing self-documenting physics analysis scripts and software.
+    </p></li>
+
+   </ul>
+  </p>
+
+  <p>In addition, PyHEP is a test bed for some software experiments I've
+  been thinking about for a while, including:
+   <ul>
+    <li>Using a functional programming style for implementing ntuple
+    analysis.</li>
+    <li>Using relational database terminology, concepts, and software
+    for ntuple analysis and HEP event data handling.</li>
+    <li>Designing visual styles for plots according to <a
+    href="http://www.edwardtufte.com/">Edward R Tufte's</a> notions of
+    information design.</li>
+   </ul>
+  </p>
+
+  <p>To get a sense for PyHEP's capabilities and design, you may browse
+  its documentation on line; see the download section below.</p>
+
+  <hr noshade>
+
+  <h3>Reporting Bugs</h3>
+
+  <p>Please send bug reports, requests, comments, complaints, etc. to
+  the author, <a
+  href="mailto:alex@alexsamuel.net"><tt>alex@alexsamuel.net</tt></a>.
+  </p>
+
+  <p>Any of these is considered a bug:
+   <ul>
+    <li>Variance among documentation, doc strings, and implementation.</li>
+    <li>Missing documentation.</li>
+    <li>An exception raised inside the PyHEP library for valid
+    input.</li>
+    <li>An exception or stack trace that does not contain useful
+    information about fixing the problem.</li>
+    <li>Any segv, abort, failed assertion, etc. that causes the Python
+    process to terminate unceremoniously.</li>
+    <li>Leaked memory or Python objects.</li>
+    <li>Any unsolicited output to stdout or stderr.</li>
+    <li>Behaviour that does not correspond to obvious expectations.</li>
+   </ul>
+  </p>
+
+ </body>
+</html>

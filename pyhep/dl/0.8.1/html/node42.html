@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.6.1 The hep.root module</title>
+<META NAME="description" CONTENT="5.6.1 The hep.root module">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node43.html">
+<LINK REL="previous" HREF="node41.html">
+<LINK REL="up" HREF="node41.html">
+<LINK REL="next" HREF="node43.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node41.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node41.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node43.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node41.html">5.6 Working with Root</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node41.html">5.6 Working with Root</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node43.html">5.6.2 Trees</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007610000000000000000">
+5.6.1 The <tt class="module">hep.root</tt> module</A>
+</H2>
+
+<P>
+The <tt class="module">hep.root</tt> contains  PyHEP's implementation of Root file
+access.  
+
+<P>
+PyHEP's module <tt class="module">hep.root</tt> is built and linked against Root shared
+libraries which are distributed with PyHEP.  The module does not depend
+on any other version of Root installed on your system.
+
+<P>
+Some details particular to Root directory objects:
+
+<UL>
+<LI>A Root file is not closed until the file object is destroyed,
+ i.e. all references to it are released.  Especially when writing a Root
+ file, be careful to release all references to the file object.
+
+<P>
+</LI>
+<LI>Not all histogram features supported in Root are also supported
+ in  PyHEP, and visa versa.  Therefore, if a histogram is saved to a
+ Root file and later loaded, it may differ in some of its
+ characteristics.  For instance, any additional attributes added to the
+ histogram will be lost.  The basic histogram binning, and bin contents
+ and errors (including overflow and underflow bins), are stored
+ correctly, however.
+
+<P>
+</LI>
+<LI>In a Root file, each object is given not only a name identifying
+ it in the directory that contains it, but a title.  When you retrieve
+ an object from an Root file,  PyHEP stores this value in the object's
+ <tt class="member">title</tt> attribute.  When you store an object from an Root file,
+ you may specify the title to use either by setting the object's
+ <tt class="member">title</tt> attribute or by using an <code>title</code> keyword argument.
+ An info object obtained from an Root directory's <tt class="method">getinfo</tt>
+ method also has an <tt class="member">title</tt> attribute.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node41.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node41.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node43.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node41.html">5.6 Working with Root</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node41.html">5.6 Working with Root</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node43.html">5.6.2 Trees</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

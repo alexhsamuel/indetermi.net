@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>7.2.1 Styles for plot objects</title>
+<META NAME="description" CONTENT="7.2.1 Styles for plot objects">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node57.html">
+<LINK REL="previous" HREF="node55.html">
+<LINK REL="up" HREF="node55.html">
+<LINK REL="next" HREF="node57.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node55.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node55.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node57.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node55.html">7.2 Plot styles</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node55.html">7.2 Plot styles</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node57.html">7.2.2 Styles for all</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION009210000000000000000">
+7.2.1 Styles for plot objects</A>
+</H2>
+
+<P>
+These style attributes control the visual style of <code>Plot</code> objects.
+
+<P>
+
+<UL>
+<LI><code>"bottom_margin"</code>: The size of the margin on the bottom of
+ the plot.
+
+<P>
+</LI>
+<LI><code>"color"</code>: Specifies the color for the entire plot,
+ including axes and labels.
+
+<P>
+</LI>
+<LI><code>"font"</code>: Specifies the font to use for titles and labels
+ on the plot.
+
+<P>
+</LI>
+<LI><code>"font_size"</code>: Specifies the font size to use for titles and
+ labels on the plot.
+
+<P>
+</LI>
+<LI><code>"left_margin"</code>: The size of the margin on the left side of
+ the plot.
+
+<P>
+</LI>
+<LI><code>"log_scale"</code>: If true, a logarithmic scale is used for the
+ dependent axis (the y axis in one-dimensional plots, the z range in
+ two-dimensional plots).
+
+<P>
+</LI>
+<LI><code>"normalize_bin_size"</code>: How to normalize bin contents to a
+ common bin size.  The contents of bins of different sizes are
+ normalized to a common effective bin width (for one-dimensional
+ histograms) or bin area (for two-dimensional histograms) to facilitate
+ the interpretation of bin contents as an approximation of probability
+ density.  The contents of overflow bins are never normalized.
+
+<P>
+If the value of this style attribute is a number, the content of each
+ bin is normalized to this bin size.  If the value is <code>"auto"</code> (the
+ default), a bin size is automatically chosen (for a histogram with
+ evenly-binned axes, the histogram's actual bin size is used).  If the
+ value is <code>None</code>, bins are not normalized, and the actual values of
+ bin contents are plotted.
+
+<P>
+</LI>
+<LI><code>"overflows"</code>: If true, show underflow and overflow bins for
+ the x axis (for one-dimensional plots) or the x and y axis (for
+ two-dimensional plots).  For two-dimensional plots, underflow and
+ overflow bins can be enabled for the x and y axes individually with the
+ <code>"x_axis_overflows"</code> and <code>"y_axis_overflows"</code> style
+ attributes.
+
+<P>
+</LI>
+<LI><code>"overflow_line"</code>, <code>"overflow_line_color"</code>,
+ <code>"overflow_line_dash"</code>, <code>"overflow_line_thickness"</code>: Whether
+ to draw lines separating the overflow bins from the rest of the bin
+ data, and the color, dash pattern, and thickness of the line.
+
+<P>
+</LI>
+<LI><code>"right_margin"</code>: The size of the margin on the right side
+ of the plot.
+
+<P>
+</LI>
+<LI><code>"title"</code>: A title to draw on the plot.
+
+<P>
+</LI>
+<LI><code>"top_margin"</code>: The size of the margin on the top of the
+ plot.
+
+<P>
+</LI>
+<LI><code>"x_axis_font"</code>, <code>"x_axis_font_size"</code>: The font and
+ font size to use for labelling the x axis and its ticks.  Likewise for
+ the y axis.
+
+<P>
+</LI>
+<LI><code>"x_axis_line"</code>, <code>"x_axis_color"</code>, 
+ <code>"x_axis_thickness"</code>: Whether to draw the x axis, and its color
+ and thickness.  Likewise for the y axis.
+
+<P>
+</LI>
+<LI><code>"x_axis_offset"</code>: The distance between the x axis and the
+ edge of the bin data.  Likewise for the y axis.
+
+<P>
+</LI>
+<LI><code>"x_axis_position"</code>, <code>"y_axis_position"</code>: The position
+ of the axes on the plot.  For the x axis, the value may be either
+ <code>"bottom"</code> or <code>"top"</code>; for the y axis, either <code>"left"</code>
+ or <code>"right"</code>.
+
+<P>
+</LI>
+<LI><code>"x_axis_range"</code>: The range of values to display along the x
+ axis, as a <code>(lo, hi)</code> pair.  Likewise for the y axis.
+
+<P>
+</LI>
+<LI><code>"x_axis_ticks"</code>: Specifies the tick marks to draw along the
+ x axis.  The value may be the approximate number of tick marks to use
+ (chosen heuristally from the axis range); or a sequence of tick
+ positions; or <code>None</code>.  Likewise for the y axis.
+
+<P>
+</LI>
+<LI><code>"x_axis_tick_size"</code>, <code>"x_axis_tick_thickness"</code>: The
+ length and thickness of tick marks on the x axis.  Likewise for the y
+ axis. 
+
+<P>
+</LI>
+<LI><code>"z_range"</code>: For two-dimensional plots, the range of values
+ to display on the (virtual) z axis, as a <code>(lo, hi)</code> pair.
+
+<P>
+</LI>
+<LI><code>"zero_line"</code>, <code>"zero_line_color"</code>,
+ <code>"zero_line_thickness"</code>: In one-dimensional plots, whether to draw
+ the zero line, and the zero line's color and thickness.
+
+<P>
+</LI>
+</UL>
+
+<P>
+In addition, the style attributes that control the border, aspect ratio,
+and size of layouts can be specified for plot objects as well.  See the
+section on layout styles in the chapter on drawing.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node55.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node55.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node57.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node55.html">7.2 Plot styles</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node55.html">7.2 Plot styles</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node57.html">7.2.2 Styles for all</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

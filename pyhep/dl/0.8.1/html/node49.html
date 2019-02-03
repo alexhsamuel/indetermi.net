@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.3.2 Enhanced metafile renderer</title>
+<META NAME="description" CONTENT="6.3.2 Enhanced metafile renderer">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node50.html">
+<LINK REL="previous" HREF="node48.html">
+<LINK REL="up" HREF="node47.html">
+<LINK REL="next" HREF="node50.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node48.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node47.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node50.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node48.html">6.3.1 PostScript renderers</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node47.html">6.3 Renderers</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node50.html">6.3.3 X window renderer</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008320000000000000000">
+6.3.2 Enhanced metafile renderer</A>
+</H2>
+
+<P>
+The module <tt class="module">hep.draw.metafile</tt> provides a render for files in the
+enhanced Windows metafile (EMF) format.  This is a vector file format
+widely supported by Windows applications.  An EMF file essentially
+contains a recording of the Windows graphics system calls required to
+draw a figure.  The standard file extension for EMF files is
+``<code>.emf</code>''.
+
+<P>
+The <tt class="class">EnhancedMetafile</tt> class renders figures into EMF files.  As
+with <tt class="class">PSFile</tt>, specify the path to the output file and the image
+size when creating an <tt class="class">EnhancedMetafile</tt> object.  The
+<tt class="method">render</tt> method should only be invoked once.
+
+<P>
+This is how you can quickly save a figure as an EMF file.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; from hep.draw.metafile import EnhancedMetafile
+&gt;&gt;&gt; EnhancedMetafile("figure.emf", (0.06, 0.04)).render(figure)
+</pre></dl>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node48.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node47.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node50.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node48.html">6.3.1 PostScript renderers</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node47.html">6.3 Renderers</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node50.html">6.3.3 X window renderer</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

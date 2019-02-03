@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>11.3.1 Plotting functions</title>
+<META NAME="description" CONTENT="11.3.1 Plotting functions">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node74.html">
+<LINK REL="previous" HREF="node72.html">
+<LINK REL="up" HREF="node72.html">
+<LINK REL="next" HREF="node74.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node72.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node72.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node74.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node72.html">11.3 Interactive functions and</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node72.html">11.3 Interactive functions and</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node74.html">11.3.2 Table functions</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION0013310000000000000000">
+11.3.1 Plotting functions</A>
+</H2>
+
+<P>
+Interactive  PyHEP plots histograms in a pop-up plot window, similar to
+PAW.  The plot window may be divided into rectangular ``zones'', each
+displaying one plot.  All plots are shown in the same window, replacing
+other plots where necessary.
+
+<P>
+<dl><dt><b><a name="l2h-7"><tt class="function">iplot</tt></a></b>(<var>histogram</var><big>[</big><var>, **style</var><big>]</big>)
+<dd>
+ Show a new plots of a histogram or scatter plot in the plot window.
+ The argument is a histogram or <tt class="class">Scatter</tt> object.  Any keyword
+ arguments are used as style attributes for the new plot.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-8"><tt class="function">iseries</tt></a></b>(<var>histogram</var><big>[</big><var>, **style</var><big>]</big>)
+<dd>
+ Add a series to the current plot in the plot window.  The argument is a
+ histogram or <tt class="class">Scatter</tt> object.  Any keyword arguments are used as
+ style attributes for the new plot.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-9"><tt class="function">igrid</tt></a></b>(<var>columns, rows</var>)
+<dd>
+ Divide the plot window into a grid of rectangular plot zones.  The
+ arguments are the number of columns and rows in the grid.  Each call to
+ <tt class="function">iplot</tt> uses the next plot zone, proceeding left-to-right and
+ then top-to-bottom.  Note that calling <tt class="function">igrid</tt> always
+ removes all plots and clears the plot window.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-10"><tt class="function">iselect</tt></a></b>(<var>column, row</var>)
+<dd>
+ Select a plot zone.  Its arguments are the column and row coordinates
+ of the zone.  The next plot is drawn in this zone. 
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-11"><tt class="function">ishow</tt></a></b>(<var>figure</var>)
+<dd>
+ Show <code>figure</code> in the plot window.  If you have divided the figure
+ with <tt class="function">igrid</tt>, shows <code>figure</code> in the current cell.
+</dl>
+
+<P>
+<dl><dt><b><a name="l2h-12"><tt class="function">iprint</tt></a></b>(<var>file_name</var>)
+<dd>
+ Print the contents of the plot window to a file.  The type of the file
+ is inferred from the file name extension: ``.ps'' produces a PostScript
+ file, and ``.eps'' produces an encapsulated PostScript file.
+</dl>
+
+<P>
+The global variable <code>ifig</code> always refers to the current <code>Plot</code>
+object, the current figure (if you added one with <tt class="function">ishow</tt>, or
+<code>None</code> (if the current plot zone is empty).  The global variable
+<code>i_plots</code> is a sequence of sequences of <code>Plot</code> objects for all
+zones in the plot window.
+
+<P>
+The global variable <code>iwin</code> is a draw object for the plot window.
+
+<P>
+The global variable <code>istyle</code> is a style dictionary that is used for
+plots and series created with <tt class="function">iplot</tt> and <tt class="function">iseries</tt>.
+If you set a style attribute in <code>istyle</code>, it will become the
+default for subsequent plots.  You can also call the <tt class="method">setall</tt>
+method of <code>istyle</code>, which sets a style attribute not only in this
+dictionary, but in all of the plots currently shown in the plot window. 
+For example, to set a log scale for the plots currently shown as well as
+subsequent plots,
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; istyle.setall("log_scale", True)
+</pre></dl>
+To set a style attribute in the current plot only, access its
+<tt class="member">style</tt> member through <code>ifig</code>, like this:
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; ifig.style["log_scale"] = True
+</pre></dl>
+ PyHEP keeps track of when a plot's style dictionary is changed, and
+redraws the plot automatically.
+
+<P>
+You may modify any plot displayed in any plot zone.  Select the zone
+with <tt class="function">iselect</tt>, access and modify the plot with <code>i_plot</code>
+(for instance, adjust its style or add a series), and then call
+<tt class="function">iredraw</tt> to redraw it.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node72.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node72.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node74.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node72.html">11.3 Interactive functions and</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node72.html">11.3 Interactive functions and</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node74.html">11.3.2 Table functions</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.3.1 PostScript renderers</title>
+<META NAME="description" CONTENT="6.3.1 PostScript renderers">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node49.html">
+<LINK REL="previous" HREF="node47.html">
+<LINK REL="up" HREF="node47.html">
+<LINK REL="next" HREF="node49.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node47.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node47.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node49.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node47.html">6.3 Renderers</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node47.html">6.3 Renderers</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node49.html">6.3.2 Enhanced metafile renderer</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION008310000000000000000">
+6.3.1 PostScript renderers</A>
+</H2>
+
+<P>
+The module <tt class="module">hep.draw.postscript</tt> provides renderers for
+PostScript files.  
+
+<P>
+An instance of class <tt class="class">PSFile</tt> generates a multi-page ADSC
+PostScript file.  Pass the constructor the path to the output file.  
+
+<P>
+You may specify the page size using the <code>page_size</code> keyword
+argument.  The page size is either a <code>(width, height)</code> pair.  You
+can also specify a page size by name, such as <code>"letter"</code> or
+<code>"A4"</code>.  Named pages sizes are stored in the dictionary
+<code>hep.draw.page_size</code>.  If the page size is omitted, letter is
+assumed.
+
+<P>
+Each time you invoke the <tt class="method">render</tt> method of a <tt class="class">PSFile</tt>
+object, you generate a new page in the PostScript.  When you are done,
+simply delete the <tt class="class">PSFile</tt> object to close the file.
+
+<P>
+This example shows the generatation of a two-page PostScript file.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; import hep.draw.postscript
+&gt;&gt;&gt; ps_file = hep.draw.postscript.PSFile("output.ps", page_size="letter")
+&gt;&gt;&gt; ps_file.render(figure1)
+&gt;&gt;&gt; ps_file.render(figure2)
+&gt;&gt;&gt; del ps_file
+</pre></dl>
+
+<P>
+The class <tt class="class">EPSFile</tt> generates an encapsulated PostScript file.
+Specify the bounding box size of the image using the <code>size</code> keyword
+argument.  You should only invoke the <tt class="method">render</tt> method
+once per <tt class="class">EPSFile</tt> object.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node47.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node47.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node49.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node47.html">6.3 Renderers</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node47.html">6.3 Renderers</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node49.html">6.3.2 Enhanced metafile renderer</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

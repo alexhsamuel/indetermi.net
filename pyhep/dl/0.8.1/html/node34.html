@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.1 File types</title>
+<META NAME="description" CONTENT="5.1 File types">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node35.html">
+<LINK REL="previous" HREF="node33.html">
+<LINK REL="up" HREF="node33.html">
+<LINK REL="next" HREF="node35.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node33.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node33.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node35.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node35.html">5.2 Methods for accessing</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007100000000000000000">
+5.1 File types</A>
+</H1>
+
+<P>
+When you retrieve a key from a file system directory (<i>i.e.</i> a
+directory object corresponding to an actual directory in the file
+system, not a directory in a Root or HBOOK file),  PyHEP examines the
+key's extension to determines how to handle the value.  
+
+<P>
+Each type has an associated type name.  When retrieving or storing items
+in a directory, you may override the determination of the file type with
+the keyword argument <code>type</code>, specifying the type name.  For
+example, if you have a Root file named <span class="file">histograms.dat</span> in a
+directory, you may retrieve it using
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; histograms = directory.get("histograms.dat", type="Root file")
+</pre></dl>
+
+<P>
+The file types understood by  PyHEP, and their corresponding extensions,
+are listed below.
+
+<P>
+
+<UL>
+<LI><code>"directory"</code> (no extension): A directory.  The value is a
+ directory object.  
+
+<P>
+</LI>
+<LI><code>"HBOOK file"</code> (extension <span class="file">.hbook</span>): An HBOOK file.
+ The value is a directory object representing the root of the RZ
+ directory tree inside the file.  Additional information about HBOOK
+ files is presented below.
+
+<P>
+</LI>
+<LI><code>"pickle"</code> (extension <span class="file">.pickle</span>): A file containing a
+ Python pickle.  The value is whatever Python object was pickled.
+
+<P>
+</LI>
+<LI><code>"Root file"</code> (extension <span class="file">.root</span>): A Root file.  The
+ value is a directory object representing the root of the directory tree
+ inside the file.  Additional information about Root files is presented
+ below.
+
+<P>
+</LI>
+<LI><code>"symlink"</code> (no extension): A symbolic link.  The value is a
+ string containing the target of the link.  Since this type has no
+ associated extension, it can only be used with the <code>type</code> keyword
+ argument described above.
+
+<P>
+</LI>
+<LI><code>"table"</code> (extension <span class="file">.table</span>): A  PyHEP table.  The
+ value is a handle to the open table.  In contrast to how other file
+ types are handled, the table is not loaded into memory.  Changes to the
+ table are reflected in the table file.
+
+<P>
+</LI>
+<LI><code>"text"</code> (extension <span class="file">.txt</span>): A text file.  The value is
+ a character string of the file's contents.
+
+<P>
+</LI>
+<LI><code>"unknown"</code> (all other extensions): Represents all file
+ types not recognized by  PyHEP.
+</LI>
+</UL>
+
+<P>
+Keys in Root and HBOOK directories are handled differently.  The file
+types corresponding to these keys is determined from metadata stored in
+the files themselves, not from an extension.  Additional file types are
+support in these directories, including <code>"1D histogram"</code> and
+<code>"2D histogram"</code>.
+
+<P>
+To determine the file type of a key, use the directory's
+<tt class="method">getinfo</tt>, method described below.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node33.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node33.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node35.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node35.html">5.2 Methods for accessing</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

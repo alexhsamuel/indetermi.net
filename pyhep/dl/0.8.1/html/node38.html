@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.5 Working with HBOOK files</title>
+<META NAME="description" CONTENT="5.5 Working with HBOOK files">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node41.html">
+<LINK REL="previous" HREF="node37.html">
+<LINK REL="up" HREF="node33.html">
+<LINK REL="next" HREF="node39.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node37.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node33.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node39.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node37.html">5.4 Storing data</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node39.html">5.5.1 The hep.cernlib.hbook module</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007500000000000000000">
+5.5 Working with HBOOK files</A>
+</H1>
+
+<P>
+You can use directory objects, as described above, to access contents of
+HBOOK files.  An HBOOK file is represented by a directory object, as is
+a subdirectory in an HBOOK file.
+
+<P>
+For example, to create a new HBOOK file in the directory represented by
+<code>data_dir</code> containing two histograms,
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; data_dir["histograms.hbook"] = { "hist1": histogram1,
+...                                  "hist2": histogram2 }
+</pre></dl>
+To create a new, empty HBOOK file or return the existing one if it
+exists,
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; hbook_file = data_dir.setdefault("histograms.hbook", {})
+</pre></dl>
+
+<P>
+
+<p><hr>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></a>
+
+<UL CLASS="ChildLinks">
+<LI><A href="node39.html">5.5.1 The <tt class="module">hep.cernlib.hbook</tt> module</a>
+<LI><A href="node40.html">5.5.2 N-tuples</a>
+</ul>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node37.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node33.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node39.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node37.html">5.4 Storing data</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node39.html">5.5.1 The hep.cernlib.hbook module</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

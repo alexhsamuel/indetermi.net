@@ -1,0 +1,210 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.2 Methods for accessing keys and values</title>
+<META NAME="description" CONTENT="5.2 Methods for accessing keys and values">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node36.html">
+<LINK REL="previous" HREF="node34.html">
+<LINK REL="up" HREF="node33.html">
+<LINK REL="next" HREF="node36.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node34.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node33.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node36.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node34.html">5.1 File types</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node36.html">5.3 Accessing file information</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION007200000000000000000">
+5.2 Methods for accessing keys and values</A>
+</H1>
+
+<P>
+As we say above, the <tt class="method">keys</tt> method lists all keys in the
+directory.  Directory objects also support the standard <tt class="method">values</tt>
+and <tt class="method">items</tt> methods, as well as <tt class="method">iterkeys</tt>,
+<tt class="method">itervalues</tt>, and <tt class="method">iteritems</tt>.  
+
+<P>
+For all of these, you may use these keyword arguments to restrict the
+keys, values, or items that are returned:
+
+<UL>
+<LI><code>recursive</code>: If true, include recursively the contents of
+ subdirectories. 
+
+<P>
+</LI>
+<LI><code>not_dir</code>: If true, don't include items that are directories
+ (either in the file system or inside Root or HBOOK files).  
+
+<P>
+</LI>
+<LI><code>pattern</code>: Only include items whose keys match the specified
+ regular expression.  See the <tt class="module">re</tt> module for a description of
+ Python's regular expression syntax.
+
+<P>
+</LI>
+<LI><code>glob</code>: Only include items whose keys match the specified
+ glob pattern.  See the <tt class="module">glob</tt> module for a description of
+ Python's glob syntax.
+
+<P>
+</LI>
+<LI><code>only_type</code>: Only include an item if its type is as
+ specified.  Item types are specified by strings; see below for more
+ information.
+
+<P>
+</LI>
+<LI><code>known_types</code>: True by default, which specifies that only
+ items of known types are included.  If you set this to false, all items
+ are included.  Note that  PyHEP will raise an exception if you try to
+ access the value corresponding to a key of unknown type.
+
+<P>
+</LI>
+</UL>
+
+<P>
+These options can also be used with <tt class="method">list</tt>, which prints a
+listing of keys in a directory and their types.
+
+<P>
+For example,
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; print cwd.keys(only_type="pickle")
+['plot.pickle', 'reco-hist.pickle', 'histogram.pickle']
+&gt;&gt;&gt; cwd.list(glob="hist*", recursive=True)
+histogram.pickle            : pickle
+recodata/reco.root/hist1    : 1D histogram
+recodata/reco.root/hist2    : 1D histogram
+</pre></dl>
+
+<P>
+As with a dictionary, the <tt class="function">len</tt> function returns the number of
+keys in the directory.  
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; print len(cwd)
+5
+</pre></dl>
+Iterating over a directory object iterates over its keys.  
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; for key in cwd:
+...   print key
+...
+readme.txt
+plot.pickle
+reco-hist.pickle
+recodata
+histogram.pickle
+</pre></dl>
+The <code>has_key</code> method and <code>in</code> operator return true if the
+specified key is in the directory.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; print cwd.has_key("readme.txt")
+True
+&gt;&gt;&gt; print "missing.pickle" in cwd
+False
+</pre></dl>
+
+<P>
+To retrieve an object, use the Python indexing notation (square
+brackets) or the <tt class="method">get</tt> method.  If the key is not found in the
+dictionary, indexing will raise <tt class="class">KeyError</tt>; the <tt class="method">get</tt>
+method will return a default value, which you can specify as the second
+argument (the default is <code>None</code>).
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; print cwd["missing.pickle"]
+Traceback (most recent call last):
+...
+KeyError: 'missing.pickle'
+&gt;&gt;&gt; print cwd.get("missing.pickle")
+None
+&gt;&gt;&gt; print cwd.get("missing.pickle", 42)
+42
+</pre></dl>
+
+<P>
+Use the <tt class="function">hep.fs.getdir</tt> function to return a directory object
+for an arbitrary path.  The path may be absolute or relative to the
+current working directory.  The path may descend into Root and HBOOK
+files.  For example,
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; data_dir = hep.fs.getdir("/nfs/data")
+&gt;&gt;&gt; histograms = hep.fs.getir("histograms.root/reco")
+</pre></dl>
+You can also use <tt class="function">hep.fs.get</tt> to load files of other types by
+specifying the path to the file.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node34.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node33.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node36.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node34.html">5.1 File types</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node33.html">5. Files and directories</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node36.html">5.3 Accessing file information</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

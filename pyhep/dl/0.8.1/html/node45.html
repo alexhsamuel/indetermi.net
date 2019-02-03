@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>6.1 Units and types</title>
+<META NAME="description" CONTENT="6.1 Units and types">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node46.html">
+<LINK REL="previous" HREF="node44.html">
+<LINK REL="up" HREF="node44.html">
+<LINK REL="next" HREF="node46.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node44.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node44.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node46.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node44.html">6. Drawing</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node44.html">6. Drawing</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node46.html">6.2 Canvases</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION008100000000000000000">
+6.1 Units and types</A>
+</H1>
+
+<P>
+The unit of measurement in the  PyHEP drawing layer is meters,
+regardless of the output device; PyHEP attempts to preserve the scale
+of output.  All measurements are given as 'float' values.
+
+<P>
+The module <tt class="module">hep.draw</tt> includes the conversion factors
+<code>point</code> and <code>inch</code> to help you use these units.  For instance,
+the length <code>12 * point</code> is about 17 cm, or a sixth of an inch.
+
+<P>
+Colors are represented by the <tt class="class">Color</tt> class.  Its constructor
+arguments are red, green, and blue color components, each between zero
+and one.  The function <tt class="function">Gray</tt> produces a shade of gray; it
+produces a color with the same value for all three components.  The
+function <tt class="function">HSV</tt> constructs a color from hue, saturation, and
+value components.  For example,
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; from hep.draw import *
+&gt;&gt;&gt; dark_red = Color(0.6, 0.1, 0.1)
+&gt;&gt;&gt; medium_gray = Gray(0.6)
+&gt;&gt;&gt; print medium_gray
+Color(0.600000, 0.600000, 0.600000)
+&gt;&gt;&gt; aqua = HSV(0.5, 0.8, 0.5)
+&gt;&gt;&gt; print aqua
+Color(0.100000, 0.500000, 0.500000)
+</pre></dl>
+Also, <tt class="module">hep.draw</tt> includes the constants <code>black</code> and
+<code>white</code>.
+
+<P>
+The appearance of a line is given by its color, thickness, and dash
+pattern.  Specify the thickness in meters as with any other length.  A
+dash pattern is a tuple of lengths, that specifies the lengths of
+alternating ``on'' and ``off'' segments.  For instance, this dash
+pattern produces a line with alternating long (2 mm) and short (1 mm)
+dashes, with a fixed small distance (0.5 mm) between the dashes.
+<dl><dd><pre class="verbatim">
+&gt;&gt;&gt; dash = (0.002, 0.0005, 0.001, 0.0005)
+</pre></dl>
+For a solid line, specify <code>None</code> as the dash pattern.  You can also
+use these constants for predefined dash patterns: <code>"solid"</code>,
+<code>"dot"</code>, <code>"dash"</code>, <code>"dot-dash"</code>, and
+<code>"dot-dot-dash"</code>.
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node44.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node44.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node46.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node44.html">6. Drawing</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node44.html">6. Drawing</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node46.html">6.2 Canvases</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>

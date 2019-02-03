@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title>5.5.1 The hep.cernlib.hbook module</title>
+<META NAME="description" CONTENT="5.5.1 The hep.cernlib.hbook module">
+<META NAME="keywords" CONTENT="pyhep">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="STYLESHEET" href="pyhep.css">
+<link rel="first" href="pyhep.html">
+<link rel="contents" href="contents.html" title="Contents">
+
+<LINK REL="next" HREF="node40.html">
+<LINK REL="previous" HREF="node38.html">
+<LINK REL="up" HREF="node38.html">
+<LINK REL="next" HREF="node40.html">
+</head>
+<body>
+<DIV CLASS="navigation">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node38.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node38.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node40.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node38.html">5.5 Working with HBOOK</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node38.html">5.5 Working with HBOOK</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node40.html">5.5.2 N-tuples</A>
+<br><hr>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION007510000000000000000">
+5.5.1 The <tt class="module">hep.cernlib.hbook</tt> module</A>
+</H2>
+
+<P>
+The <tt class="module">hep.cernlib.hbook</tt> module contains  PyHEP's implementation
+of HBOOK file access.  HBOOK is a part of the CERNLIB library, and
+provides a structured file format containing histograms and n-tuples.
+Note that not all HBOOK features are supported.
+
+<P>
+Some details particular to HBOOK directory objects:
+
+<UL>
+<LI>PyHEP's module <tt class="module">hep.cernlib.hbook</tt> is linked statically
+ against CERNLIB 2002.
+
+<P>
+</LI>
+<LI>HBOOK's names are case-insensitive.   PyHEP always uses lower
+ case for names in HBOOK files.
+
+<P>
+</LI>
+<LI>To load a histogram from an HBOOK directory, simply obtain it by
+ name using the subscript operator or <tt class="method">get</tt>.  This returns a
+ Python object representing the histogram, which may be modified freely.
+ Note that unlike HBOOK itself, where histograms are always stored in a
+ global ``PAWC'' memory region,  PyHEP constructs ordinary Python
+ objects for histograms.  There is no need to manage ``PAWC''
+ explicitly.
+
+<P>
+</LI>
+<LI>Not all histogram features supported in HBOOK are also supported
+ in  PyHEP, and visa versa.  Therefore, if a histogram is saved to an
+ HBOOK file and later loaded, it may differ in some of its
+ characteristics.  The basic histogram binning, and bin contents and
+ errors (including overflow and underflow bins), are stored correctly,
+ however.  Note that PyHEP does not provide profile histograms.
+
+<P>
+</LI>
+<LI>An HBOOK file is not closed until the file object is destroyed,
+ i.e. all references to it are released.  Especially when writing an
+ HBOOK file, be careful to release all references to the file object.
+
+<P>
+</LI>
+<LI>When  PyHEP closes an HBOOK file, it ``purges cycles'',
+ <i>i.e.</i> removes old revisions of all entries stored in the file.
+ To disable this behavior, specify <code>purge_cycles=False</code> as a
+ keyword argument when creating or accessing the HBOOK file.
+
+<P>
+</LI>
+<LI>In an HBOOK file, each object is given not only a name
+ identifying it in the directory that contains it, but a numerical RZ
+ identification as well.  When you retrieve an object from an HBOOK file,
+  PyHEP stores this value in the object's <tt class="member">rz_id</tt> attribute.
+ When you store an objet from an HBOOK file, you may specify the value
+ to use either by setting the object's <tt class="member">rz_id</tt> attribute or by
+ using an <code>rz_id</code> keyword argument; otherwise, PyHEP chooses an
+ available value.  An info object obtained from an HBOOK directory's
+ <tt class="method">getinfo</tt> method also has an <tt class="member">rz_id</tt> attribute.
+
+<P>
+</LI>
+</UL>
+
+<P>
+
+<DIV CLASS="navigation">
+<p><hr>
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td><A HREF="node38.html"><img src="icons//previous.gif"
+  border="0" height="32"
+  alt="Previous Page" width="32"></A></td>
+<td><A HREF="node38.html"><img src="icons//up.gif"
+  border="0" height="32"
+  alt="Up One Level" width="32"></A></td>
+<td><A HREF="node40.html"><img src="icons//next.gif"
+  border="0" height="32"
+  alt="Next Page" width="32"></A></td>
+<td align="center" width="100%"> PyHEP Tutorial</td>
+<td><A href="contents.html"><img src="icons//contents.gif"
+  border="0" height="32"
+  alt="Contents" width="32"></A></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+<td><img src="icons//blank.gif"
+  border="0" height="32"
+  alt="" width="32"></td>
+</tr></table>
+<b class="navlabel">Previous:</b> <a class="sectref" HREF="node38.html">5.5 Working with HBOOK</A>
+<b class="navlabel">Up:</b> <a class="sectref" HREF="node38.html">5.5 Working with HBOOK</A>
+<b class="navlabel">Next:</b> <a class="sectref" HREF="node40.html">5.5.2 N-tuples</A>
+<hr>
+
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<tt>alex@alexsamuel.net</tt>
+</ADDRESS>
+</BODY>
+</HTML>
