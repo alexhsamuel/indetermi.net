@@ -347,10 +347,15 @@
   <script>
     function openDialog(id) {
       let dialog = document.getElementById(id);
-      console.log('openDialog', id, dialog);
       dialog.style.display = "flex";
       dialog.showModal();
       dialog.addEventListener("close", () => { dialog.style.display = "none"; });
+    }
+
+    function closeDialog(id) {
+      let dialog = document.getElementById(id);
+      dialog.style.display = "flex";
+      dialog.close();
     }
 
     document.getElementById("box-sun").addEventListener("click", () => openDialog("dialog-sun"));
@@ -360,6 +365,16 @@
     document.getElementById("box-thu").addEventListener("click", () => openDialog("dialog-thu"));
     document.getElementById("box-fri").addEventListener("click", () => openDialog("dialog-fri"));
     document.getElementById("box-sat").addEventListener("click", () => openDialog("dialog-sat"));
-    document.getElementById("box-tus").addEventListener("click", () => openDialog("dialog-tus"));  </script>
+    document.getElementById("box-tus").addEventListener("click", () => openDialog("dialog-tus"));
+
+    document.getElementById("dialog-sun").addEventListener("click", () => closeDialog("dialog-sun"));
+    document.getElementById("dialog-mon").addEventListener("click", () => closeDialog("dialog-mon"));
+    document.getElementById("dialog-tue").addEventListener("click", () => closeDialog("dialog-tue"));
+    document.getElementById("dialog-wed").addEventListener("click", () => closeDialog("dialog-wed"));
+    document.getElementById("dialog-thu").addEventListener("click", () => closeDialog("dialog-thu"));
+    document.getElementById("dialog-fri").addEventListener("click", () => closeDialog("dialog-fri"));
+    document.getElementById("dialog-sat").addEventListener("click", () => closeDialog("dialog-sat"));
+    document.getElementById("dialog-tus").addEventListener("click", () => closeDialog("dialog-tus"));
+  </script>
 </body>
 </html>
