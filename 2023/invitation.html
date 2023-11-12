@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap');
+
+    @font-face {
+      font-family: 'Impact';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url('/impact.ttf');
+    }
+
+    * {
+      :focus { outline: none; }
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: white;
+      font-family: "Playfair Display", sans;
+      font-size: 18px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .content {
+      max-width: 1024px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .meme {
+      font-family: Impact;
+      text-transform: uppercase;
+      font-size: 60px;
+    }
+
+    .head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 300%;
+      margin: 0 48px 48px 48px;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(8, 128px);
+      align-items: stretch;
+      justify-items: stretch;
+    }
+    .calendar > div {
+      border: 2px solid #333;
+      margin: 2px;
+
+      display: grid;
+      grid-template: 32px 96px / 128px;
+    }
+
+    @media(max-width:1024px) {
+      body {
+        font-size: 24px;
+      }
+      .calendar {
+        grid-template-columns: repeat(4, 192px);
+      }
+      .calendar > div {
+        grid-template: 48px 146px / 192px;
+      }
+    }
+
+    .calendar > div > :nth-child(1) {
+      width: 1rem;
+      height: 1.5rem;
+      position: absolute;
+      background: #333;
+      color: white;
+      padding-right: 6px;
+      text-align: right;
+      font-family: monospace;
+      font-weight: 700;
+    }
+    .calendar > div > :nth-child(2) {
+      place-self: start center;
+
+      padding: 0 4px;
+      font-weight: 700;
+    }
+    .calendar > div > :nth-child(3) {
+      place-self: center center;
+    }
+    .calendar img {
+      filter: grayscale(0);
+    }
+    .calendar img:hover {
+      filter: none;
+    }
+
+    .border-dance {
+      height: 64px;
+      width: 64px;
+      background: linear-gradient(90deg, #cdde87 50%, transparent 50%), linear-gradient(90deg, #cdde87 50%, transparent 50%), linear-gradient(0deg, #cdde87 50%, transparent 50%), linear-gradient(0deg, #cdde87 50%, transparent 50%);
+      background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+      background-size: 15px 4px, 15px 4px, 4px 15px, 4px 15px;
+      background-position: 0px 0px, 64px 64px, 0px 64px, 64px 0px;
+      padding: 10px;
+      animation: border-dance 1s infinite linear;
+      animation-direction: alternate;
+    }
+    @keyframes border-dance {
+      0% {
+        background-position: 0px 0px, 64px 80px, 0px 64px, 80px 0px;
+      }
+      100% {
+        background-position: 64px 0px, 0px 80px, 0px 0px, 80px 64px;
+      }
+    }
+
+    dialog {
+      display: none;
+      border: 24px solid white !important;
+      border-radius: 32px;
+      box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      padding: 8px;
+      max-width: 80%;
+      justify-content: center;
+      align-items: center;
+    }
+    dialog img {
+      border-radius: 12px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="content">
+      <div class="head">
+        <img src="drawing-1.svg" alt="An OG Hipster" style="width: 100%;">
+        <hr style="width: 100%;">
+        <div>The Birthday Experience</div>
+        <hr style="width: 100%;">
+        <div style="font-size: 75%;">December 2023</div>
+      </div>
+
+      <div class="calendar">
+        <div id="box-sun">
+          <div>3</div>
+          <div>Sun</div>
+          <div>
+            <img class="border-dance" src="party_hat_confetti_celebration.png" alt="party hat" style="width: 64px;">
+          </div>
+        </div>
+        <div id="box-mon">
+          <div>4</div>
+          <div>Mon</div>
+          <div>???</div>
+        </div>
+        <div id="box-tue">
+          <div>5</div>
+          <div>Tue</div>
+          <div>
+            <img src="d&d.png" alt="party hat" style="width: 48px;">
+          </div>
+        </div>
+        <div id="box-wed">
+          <div>6</div>
+          <div>Wed</div>
+          <div>
+            <img src="deutschland.png" alt="party hat" style="width: 48px;">
+          </div>
+        </div>
+        <div id="box-thu">
+          <div>7</div>
+          <div>Thu</div>
+          <div>???</div>
+        </div>
+        <div id="box-fri">
+          <div>8</div>
+          <div>Fri</div>
+          <div>
+            <img src="dance-emoji.png" alt="party hat" style="width: 64px;">
+          </div>
+        </div>
+        <div id="box-sat">
+          <div>9</div>
+          <div>Sat</div>
+          <div>
+            <img src="sleep.png" alt="party hat" style="width: 48px;">
+          </div>
+        </div>
+        <div id="box-tus">
+          <div style="display: none"></div>
+          <div>early 2023</div>
+          <div>
+            <img src="cowboy.png" alt="party hat" style="width: 64px;">
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <dialog id="dialog-sun">
+    <div>
+      <h1>Cheers to Fifty Years</h1>
+
+      <p>
+        Come to the party&mdash;no excuses!
+      </p>
+
+      <p>
+        Friends most welcome.  In fact, please <i>bring a friend I don't know yet</i>, and make my next 50 years even better.
+      </p>
+
+      Sun 3 December from 6 PM to 9 PM
+      <br>
+      <a href="https://maps.app.goo.gl/S4b4hbhhBuGS29hTA">Wild East Brewing</a>, Brooklyn NYC
+      <br>
+      drinks, pizza, and more
+
+      <p>
+      Afterparty t.b.d.
+      </p>
+    </div>
+  </dialog>
+ 
+  <dialog id="dialog-mon">
+    <div>
+      This page intentionally left blank.
+    </div>
+  </dialog>
+
+  <dialog id="dialog-tue">
+    <div>
+      <h1>Role-Playing Festival</h1>
+      <p>
+        An evening of one-shot role-playing games hosted by Alex &amp; friends.
+      </p>
+
+      <div style="width: 100%; display: flex; justify-content: center;">
+        <img src="rpg.jpg" style="width: 512px;">
+      </div>
+
+      <p>
+        Newcomers, beginners, and experienced players welcome.
+      </p>
+
+      Tue 5 December from 6:30 PM to 11 PM
+      <br>
+      Chez Alex, 464 West Broadway Apt 4
+
+      <p>
+        If you wanna play, <a href="mailto:alex@alexsamuel.net?subject=I wanna play">respond <i>seevooplay</i></a>&mdash;spots are limited.
+      </p>
+    </div>
+  </dialog>
+
+  <dialog id="dialog-wed">
+    <div>
+      <p>for German learners and speakers</p>
+
+      <img src="beer.jpg" style="width: 256px; float: right;">
+
+      <h1>Eine Einführung in das Bier</h1>
+
+      <p>
+        Alex stellt einen wichtigen Teil der deutschen Kultur vor,
+        einschließlich einer Folienpräsentation und natürlich Bier zum
+        Probieren.  Unter den Themen: das Brauen, die Taxonomie der Biere,
+        wichtige Biervokabeln, und persönliche Erfahrungen aus einem Leben des
+        Biertrinkens.
+      </p>
+
+      <p>
+        Echte Deutsche wissen vermutlich seit der dritten Klasse alles darüber,
+        aber sind auf jedem Fall herzlich willkommen selbst wenn nur mit uns zu
+        saufen.
+      </p>
+
+      Mittwoch 6. Dezember von 18.30 PM bis ???
+      <br>
+      bei Alex, 464 West Broadway Apt 4
+    </div>
+  </dialog>
+
+  <dialog id="dialog-thu">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <div class="meme">I cannot wait</div>
+      <img src="head1.png" style="width: 256px;">
+      <div class="meme">to see you</div>
+    </div>
+  </dialog>
+
+  <dialog id="dialog-fri">
+    <div>
+      <h1>Dance Dance Dance</h1>
+
+      <tt>@TheStrangerNYC</tt>
+
+      <p>
+        <a href="https://www.thestrangernyc.com/"h>Get yourself a ticket here.</a>  We go early stay late.
+      </p>
+    </div>
+  </dialog>
+
+  <dialog id="dialog-sat">
+    <div>
+      Sleep in.  Christmas is coming up.
+    </div>
+  </dialog>
+
+  <dialog id="dialog-tus">
+    <div>
+      <h1>The Wild West</h1>
+
+      <p>
+        Visit my newfound second home in sunny Tucson, AZ.
+      </p>
+
+      <ul>
+        <li>good weather to the horizon</li>
+        <li>prickly things</li>
+        <li>hiking in the desert and mountains</li>
+        <li>horses, guns, and cowboy stuff</li>
+        <li>tacos de chicharrón, birria, Sonora Dogs, karamelos, quesadogos</li>
+      </ul>
+
+      <p>
+        I'm planning a dude ranch trip for the late winter/spring.  LMK if you're down.
+      </p>
+
+      <img src="desert.jpg" style="width: 384px; float: right;">
+
+      <p style="margin-top: 16rem;">
+        You are <i>always welcome</i> with me and I would love to see you out West.
+      </p>
+    </div>
+  </dialog>
+
+  <script>
+    function openDialog(id) {
+      let dialog = document.getElementById(id);
+      console.log('openDialog', id, dialog);
+      dialog.style.display = "flex";
+      dialog.showModal();
+      dialog.addEventListener("close", () => { dialog.style.display = "none"; });
+    }
+
+    document.getElementById("box-sun").addEventListener("click", () => openDialog("dialog-sun"));
+    document.getElementById("box-mon").addEventListener("click", () => openDialog("dialog-mon"));
+    document.getElementById("box-tue").addEventListener("click", () => openDialog("dialog-tue"));
+    document.getElementById("box-wed").addEventListener("click", () => openDialog("dialog-wed"));
+    document.getElementById("box-thu").addEventListener("click", () => openDialog("dialog-thu"));
+    document.getElementById("box-fri").addEventListener("click", () => openDialog("dialog-fri"));
+    document.getElementById("box-sat").addEventListener("click", () => openDialog("dialog-sat"));
+    document.getElementById("box-tus").addEventListener("click", () => openDialog("dialog-tus"));  </script>
+</body>
+</html>
