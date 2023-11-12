@@ -13,8 +13,16 @@
       src: url('/impact.ttf');
     }
 
+    :root {
+      --smiley-scale: 1.0;
+    }
+
     * {
       :focus { outline: none; }
+    }
+
+    a, a:visited, a:focus {
+      color: inherit;
     }
 
     body {
@@ -47,7 +55,6 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-size: 300%;
       margin: 0 48px 48px 48px;
     }
 
@@ -59,13 +66,16 @@
     }
     .calendar > div {
       border: 2px solid #333;
-      margin: 2px;
+      margin: 4px 2px;
 
       display: grid;
       grid-template: 32px 96px / 128px;
     }
 
     @media(max-width:1024px) {
+      :root {
+        --smiley-scale: 1.5;
+      }
       body {
         font-size: 24px;
       }
@@ -124,9 +134,41 @@
       }
     }
 
+    .wiggle {
+      animation: wiggle 1s infinite linear;
+      animation-direction: alternate;
+      transform-origin: 44px 24px;
+    }
+    @-moz-keyframes wiggle {
+      0%, 100% {
+        -moz-transform: rotate(-30deg);
+      }
+      50% {
+        -moz-transform: rotate(20deg);
+      }
+    }
+    @-webkit-keyframes wiggle {
+      0%, 100% {
+        -webkit-transform: rotate(-30deg);
+      }
+      50% {
+        -webkit-transform: rotate(20deg);
+      }
+    }
+    @-keyframes wiggle {
+      0%, 100% {
+        -webkit-transform: rotate(-30deg);
+        transform: rotate(-30deg);
+      }
+      50% {
+        -webkit-transform: rotate(20deg);
+        transform: rotate(20deg);
+      }
+    }
+
     dialog {
       display: none;
-      border: 24px solid white !important;
+      border: 24px solid white;
       border-radius: 32px;
       box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
       padding: 8px;
@@ -138,6 +180,57 @@
       border-radius: 12px;
     }
 
+      .container {
+        width: 100%;
+        height: 100%;
+      }
+      .confetti {
+        width: 15px;
+        height: 15px;
+        background-color: #f2d74e;
+        position: absolute;
+        left: 50%;
+        animation: confetti 5s ease-in-out -2s infinite;
+        transform-origin: left top;
+      }
+      .confetti:nth-child(1) {
+        background-color: #f2d74e; left: 10%; animation-delay: 0;
+      }
+      .confetti:nth-child(2) {
+        background-color: #95c3de; left: 20%; animation-delay: -5s;
+      }
+      .confetti:nth-child(3) {
+        background-color: #ff9a91; left: 30%; animation-delay: -3s;
+      }
+      .confetti:nth-child(4) {
+        background-color: #f2d74e; left: 40%; animation-delay: -2.5s;
+      }
+      .confetti:nth-child(5) {
+        background-color: #95c3de; left: 50%; animation-delay: -4s;
+      }
+      .confetti:nth-child(6) {
+        background-color: #ff9a91; left: 60%; animation-delay: -6s;
+      }
+      .confetti:nth-child(7) {
+        background-color: #f2d74e; left: 70%; animation-delay: -1.5s;
+      }
+      .confetti:nth-child(8) {
+        background-color: #95c3de; left: 80%; animation-delay: -2s;
+      }
+      .confetti:nth-child(9) {
+        background-color: #ff9a91; left: 90%; animation-delay: -3.5s;
+      }
+      .confetti:nth-child(10) {
+        background-color: #f2d74e; left: 100%; animation-delay: -2.5s;
+      }
+
+      @keyframes confetti {
+        0% { transform: rotateZ(15deg) rotateY(0deg) translate(0,0); }
+        25% { transform: rotateZ(5deg) rotateY(360deg) translate(-5vw,20vh); }
+        50% { transform: rotateZ(15deg) rotateY(720deg) translate(5vw,60vh); }
+        75% { transform: rotateZ(5deg) rotateY(1080deg) translate(-10vw,80vh); }
+        100% { transform: rotateZ(15deg) rotateY(1440deg) translate(10vw,110vh); }
+      }
   </style>
 </head>
 <body>
@@ -145,70 +238,84 @@
       <div class="head">
         <img src="drawing-1.svg" alt="An OG Hipster" style="width: 100%;">
         <hr style="width: 100%;">
-        <div>The Birthday Experience</div>
+        <div style="font-size: 300%;">The Birthday Experience</div>
         <hr style="width: 100%;">
-        <div style="font-size: 75%;">December 2023</div>
+        <div style="font-size: 150%;"><b>December 2023</b></div>
       </div>
 
       <div class="calendar">
         <div id="box-sun">
-          <div>3</div>
+          <div style="color: #fff080;">3</div>
           <div>Sun</div>
           <div>
-            <img class="border-dance" src="party_hat_confetti_celebration.png" alt="party hat" style="width: 64px;">
+            <img class="border-dance" src="party_hat_confetti_celebration.png" alt="party hat" style="width: calc(64px);">
           </div>
         </div>
         <div id="box-mon">
           <div>4</div>
           <div>Mon</div>
-          <div>???</div>
+          <div>
+            <img src="blank.png" alt="party hat" style="width: calc(48px * var(--smiley-scale));">
+          </div>
         </div>
         <div id="box-tue">
           <div>5</div>
           <div>Tue</div>
           <div>
-            <img src="d&d.png" alt="party hat" style="width: 48px;">
+            <img src="d&d.png" alt="party hat" style="width: calc(48px * var(--smiley-scale));">
           </div>
         </div>
         <div id="box-wed">
           <div>6</div>
           <div>Wed</div>
           <div>
-            <img src="deutschland.png" alt="party hat" style="width: 48px;">
+            <img src="deutschland.png" alt="party hat" style="width: calc(48px * var(--smiley-scale));">
           </div>
         </div>
         <div id="box-thu">
           <div>7</div>
           <div>Thu</div>
-          <div>???</div>
+          <div>
+            <img src="stache.jpg" alt="party hat" style="width: 48px; width: calc(48px * var(--smiley-scale));">
+          </div>
         </div>
         <div id="box-fri">
           <div>8</div>
           <div>Fri</div>
           <div>
-            <img src="dance-emoji.png" alt="party hat" style="width: 64px;">
+            <img src="dance-emoji.png" class="wiggle" alt="party hat" style="width: calc(64px * var(--smiley-scale));">
           </div>
         </div>
         <div id="box-sat">
           <div>9</div>
           <div>Sat</div>
           <div>
-            <img src="sleep.png" alt="party hat" style="width: 48px;">
+            <img src="sleep.png" alt="party hat" style="width: calc(40px * var(--smiley-scale));">
           </div>
         </div>
         <div id="box-tus">
           <div style="display: none"></div>
           <div>early 2023</div>
           <div>
-            <img src="cowboy.png" alt="party hat" style="width: 64px;">
+            <img src="cowboy.png" alt="party hat" style="width: calc(64px * var(--smiley-scale));">
           </div>
         </div>
       </div>
 
   </div>
 
-  <dialog id="dialog-sun">
-    <div>
+  <dialog id="dialog-sun" style="overflow: hidden;">
+    <div class="container">
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
+      <div class="confetti"></div>
       <h1>Cheers to Fifty Years</h1>
 
       <p>
@@ -219,7 +326,7 @@
         Friends most welcome.  In fact, please <i>bring a friend I don't know yet</i>, and make my next 50 years even better.
       </p>
 
-      Sun 3 December from 6 PM to 9 PM
+      <b>Sunday 3 December</b> from 6 PM to 9 PM
       <br>
       <a href="https://maps.app.goo.gl/S4b4hbhhBuGS29hTA">Wild East Brewing</a>, Brooklyn NYC
       <br>
@@ -232,27 +339,28 @@
   </dialog>
  
   <dialog id="dialog-mon">
-    <div>
-      This page intentionally left blank.
+    <div style="padding: 64px 32px;">
+      This date intentionally left blank.
     </div>
   </dialog>
 
   <dialog id="dialog-tue">
     <div>
-      <h1>Role-Playing Festival</h1>
+      <h1>Game Festival</h1>
       <p>
-        An evening of one-shot role-playing games hosted by Alex &amp; friends.
+        An evening of one-shot role-playing games and storytelling games hosted
+        by Alex &amp; friends.
       </p>
 
       <div style="width: 100%; display: flex; justify-content: center;">
-        <img src="rpg.jpg" style="width: 512px;">
+        <img src="wizard.png" style="width: 374px;">
       </div>
 
       <p>
         Newcomers, beginners, and experienced players welcome.
       </p>
 
-      Tue 5 December from 6:30 PM to 11 PM
+      <b>Tuesday 5 December</b> from 6:30 PM to 11 PM
       <br>
       Chez Alex, 464 West Broadway Apt 4
 
@@ -284,7 +392,7 @@
         saufen.
       </p>
 
-      Mittwoch 6. Dezember von 18.30 PM bis ???
+      <b>Mittwoch 6. Dezember</b> von 18.30 bis ???
       <br>
       bei Alex, 464 West Broadway Apt 4
     </div>
@@ -298,14 +406,21 @@
     </div>
   </dialog>
 
-  <dialog id="dialog-fri">
+  <dialog id="dialog-fri" style="background: black; color: #eee; border-color: black;">
+    <img src="retro-disco-ball.gif" style="width: 384px; margin-right: 16px;">
     <div>
-      <h1>Dance Dance Dance</h1>
-
-      <tt>@TheStrangerNYC</tt>
+      <h1>We Goin Out</h1>
 
       <p>
-        <a href="https://www.thestrangernyc.com/"h>Get yourself a ticket here.</a>  We go early stay late.
+        Do you wanna dance?  <i>Do you wanna dance??</i>
+      </p>
+
+      <p>
+        <b>Friday December 8</b>
+      </p>
+
+      <p>
+        To join the cool kids, text or <a href="mailto:alex@alexsamuel.net?subject=I wanna dance">email</a> Alex by December 1.
       </p>
     </div>
   </dialog>
@@ -333,48 +448,35 @@
       </ul>
 
       <p>
-        I'm planning a dude ranch trip for the late winter/spring.  LMK if you're down.
+        I'm planning a dude ranch trip for the <b>late winter/spring</b>.  LMK if this sounds intriguing.
       </p>
 
-      <img src="desert.jpg" style="width: 384px; float: right;">
-
-      <p style="margin-top: 16rem;">
-        You are <i>always welcome</i> with me and I would love to see you out West.
-      </p>
+      <div style="display: flex; flex-gap: 8px; align-items: flex-end;">
+        <div style="max-width: 384px">
+          You are always welcome with me and I would <i>love</i> to see you out West.
+        </div>
+        <img src="desert.jpg" style="width: 384px;">
+      </div>
     </div>
   </dialog>
 
   <script>
-    function openDialog(id) {
-      let dialog = document.getElementById(id);
+    function openDialog(dialog) {
       dialog.style.display = "flex";
       dialog.showModal();
       dialog.addEventListener("close", () => { dialog.style.display = "none"; });
     }
 
-    function closeDialog(id) {
-      let dialog = document.getElementById(id);
+    function closeDialog(dialog) {
       dialog.style.display = "flex";
       dialog.close();
     }
 
-    document.getElementById("box-sun").addEventListener("click", () => openDialog("dialog-sun"));
-    document.getElementById("box-mon").addEventListener("click", () => openDialog("dialog-mon"));
-    document.getElementById("box-tue").addEventListener("click", () => openDialog("dialog-tue"));
-    document.getElementById("box-wed").addEventListener("click", () => openDialog("dialog-wed"));
-    document.getElementById("box-thu").addEventListener("click", () => openDialog("dialog-thu"));
-    document.getElementById("box-fri").addEventListener("click", () => openDialog("dialog-fri"));
-    document.getElementById("box-sat").addEventListener("click", () => openDialog("dialog-sat"));
-    document.getElementById("box-tus").addEventListener("click", () => openDialog("dialog-tus"));
-
-    document.getElementById("dialog-sun").addEventListener("click", () => closeDialog("dialog-sun"));
-    document.getElementById("dialog-mon").addEventListener("click", () => closeDialog("dialog-mon"));
-    document.getElementById("dialog-tue").addEventListener("click", () => closeDialog("dialog-tue"));
-    document.getElementById("dialog-wed").addEventListener("click", () => closeDialog("dialog-wed"));
-    document.getElementById("dialog-thu").addEventListener("click", () => closeDialog("dialog-thu"));
-    document.getElementById("dialog-fri").addEventListener("click", () => closeDialog("dialog-fri"));
-    document.getElementById("dialog-sat").addEventListener("click", () => closeDialog("dialog-sat"));
-    document.getElementById("dialog-tus").addEventListener("click", () => closeDialog("dialog-tus"));
+    for (d of ["sun", "mon", "tue", "wed", "thu", "fri", "sat", "tus"]) {
+      let dialog = document.getElementById("dialog-" + d);
+      document.getElementById("box-" + d).addEventListener("click", () => openDialog(dialog));
+      dialog.addEventListener("click", () => closeDialog(dialog));
+    }
   </script>
 </body>
 </html>
