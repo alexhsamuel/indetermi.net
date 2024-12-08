@@ -73,9 +73,21 @@ body {
 }
 
 #text {
+  align-self: start;
+  margin-top: 5vh;
+
   display: none;
   /* display: grid; */
-  grid-template: repeat(4, 0.6in) / auto;
+  grid-template: repeat(4, 5vw) / 90vw;
+  justify-items: start;
+}
+
+.cursor {
+  font-family: "Nova Mono", Monospace, fixed;
+  font-size: 4vw;
+  height: 2em;
+  width: 90vw;
+  left: 10vw;
 }
 
 #happy {
@@ -87,15 +99,6 @@ body {
   /* display: flex; */
   align-items: center;
   justify-content: center;
-}
-
-.cursor {
-  font-family: "Nova Mono", Monospace, fixed;
-  font-size: 4vw;
-  height: 2em;
-  position: absolute;
-  left: 0.5in;
-  top: 1in;
 }
 
 #cursorrect {
@@ -126,10 +129,10 @@ input {
   <div id="number" class="flexcenter"><div>2</div><div>0</div><div>2</div><div>4</div></div>
 
   <div id="text">
-    <span id="cursor1" class="cursor" style="left: 0.5in; top: 0.8in"></span>
-    <span id="cursor2" class="cursor" style="left: 0.5in; top: 1.4in"></span>
-    <span id="cursor3" class="cursor" style="left: 0.5in; top: 2.0in"></span>
-    <span id="cursor4" class="cursor" style="left: 0.5in; top: 2.6in"></span>
+    <span id="cursor1" class="cursor"></span>
+    <span id="cursor2" class="cursor"></span>
+    <span id="cursor3" class="cursor"></span>
+    <span id="cursor4" class="cursor"></span>
   </div>
 
   <div id="happy">
