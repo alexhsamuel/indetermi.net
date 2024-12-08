@@ -2,25 +2,105 @@
 <html>
 <head>
 <style>
+@font-face {
+  font-family: "Space";
+  src: url('space age.ttf');
+}
+@font-face {
+  font-family: "Mokoto";
+  src: url('mokoto.regular.ttf');
+}
+@font-face {
+  font-family: "Nova Mono";
+  src: url('NovaMono-Regular.ttf');
+}
+
 body {
-  font-family: Courier, fixed;
+  font-family: "Nova Mono", fixed;
   background-color: #000;
   color: #fff;
+  margin: 0;
+  padding: 0;
+
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+
+  display: grid;
+  grid-template: 9fr 1fr / 100vw;
+  justify-items: stretch;
 }
+
+.flexcenter {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#content {
+  display: grid;
+  grid-template: auto / 100vw;
+  justify-items: center;
+  align-items: center;
+}
+
+#rsvp {
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #555555;
+
+  font-size: 5vh;
+  font-family: "Mokoto";
+  color: #aaaaaa;
+}
+
+#rsvp a {
+  text-decoration: none;
+  color: white;
+  border: 2px dotted #999;
+  padding: 12px 48px 0 52px;
+}
+
 #number {
-  font-family: Tahoma, sans-serif;
-  font-size: 6in;
+  width: 4em;
+  font-family: Mokoto;
+  font-size: 20vw;
   text-align: center;
-  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, 25%);
 }
+
+#text {
+  display: none;
+  /* display: grid; */
+  grid-template: repeat(4, 0.6in) / auto;
+}
+
+#happy {
+  font-family: Mokoto;
+  font-size: 12vh;
+  max-width: 80vw;
+
+  display: none;
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+}
+
 .cursor {
-  font-family: Courier,"Courier New",Monospace,Consolas,fixed;
-  font-size: 0.4in;
+  font-family: "Nova Mono", Monospace, fixed;
+  font-size: 4vw;
   height: 2em;
   position: absolute;
   left: 0.5in;
   top: 1in;
 }
+
 #cursorrect {
   background: #FFFF00;
   height: 40px;
@@ -30,6 +110,7 @@ body {
   right: 0;
   margin-top:5%;
 }
+
 input {
   font-family: Courier, fixed;
   background: #303030;
@@ -39,112 +120,123 @@ input {
 }
 </style>
 </head>
-<body>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<span id="cursor1" class="cursor" style="left: 0.5in; top: 0.8in"></span>
-<span id="cursor2" class="cursor" style="left: 0.5in; top: 1.4in"></span>
-<span id="cursor3" class="cursor" style="left: 0.5in; top: 2.0in"></span>
-<span id="cursor4" class="cursor" style="left: 0.5in; top: 2.6in"></span>
-<span id="happy" class="cursor" style="text-align: center; width: 100%; position: absolute; top: 4in"></span>
-<div id="number" class="number"></div>
-<img id="dude" src="dude2.jpg" style="position:fixed; right:4in; top:0in; opacity:0"></img>
-<img id="girl" src="girl2.jpg" style="position:fixed; right:1.5in; top:2in; opacity:0"></img>
-<!--div style="position: absolute; bottom: 1in"-->
-<div id="form" style="font-size: 14pt; opacity: 0; color: #AAA; position: absolute; width: 50em; left: 50%; margin: -20em 0 0 -20em; bottom: 1in">
-<form action="rsvp.html"/>
-<input type="email" name="email" size="20" style="width: 20em">
-will attend w/ entourage of
-<input type="text" name="peeps" size="2" style="width: 2em;">
-in tow,
-<input type="submit" value="OK" style="border: 1px solid #666">
-?
-</form>
+
+<body>
+
+<div id="content">
+  <div id="number" class="flexcenter"><div>2</div><div>0</div><div>2</div><div>4</div></div>
+
+  <div id="text">
+    <span id="cursor1" class="cursor" style="left: 0.5in; top: 0.8in"></span>
+    <span id="cursor2" class="cursor" style="left: 0.5in; top: 1.4in"></span>
+    <span id="cursor3" class="cursor" style="left: 0.5in; top: 2.0in"></span>
+    <span id="cursor4" class="cursor" style="left: 0.5in; top: 2.6in"></span>
+  </div>
+
+  <div id="happy">
+    <div id="endtext"></div>
+  </div>
+  <img id="dude" src="cocktail.jpg" style="height: 100vh; position: fixed; right: 0; top: 0; opacity:0"></img>
+  <img id="girl" src="astro.jpg" style="width: 100vw; position:fixed; left: 0; bottom: 10vh; opacity:0"></img>
 </div>
-<script>
-var speed = 180;
 
-function pause(secs) {
-  var date = new Date();
-  var curDate = null;
-  var millis = secs * 1000;
-  do { curDate = new Date(); } while (curDate - date < millis);
-}
+<div id="rsvp">
+  <div>
+    RSVP :: <a id="link" href="https://partiful.com/e/ROVcadf9ZdCKnOb2o4oz">PARTIFUL</a>
+  </div>
+</div>
 
-function animateLetters(sel, str, done) {
-  sel.css("opacity", -1).css('font-size', "5in").html(str.substring(0, 1)).animate({opacity: 0.4, "font-size": "6in"}, 6 * speed, "linear", function() {
-    sel.animate({opacity: 0}, 3 * speed, "swing", function() {
-      if (str.length > 0)
-        animateLetters(sel, str.substring(1), done);
-      else if (done)
-        done();
-    })
-  });
-}
-
-function animateCursor(sel, text, done, cursor) {
-  if (cursor === undefined) cursor = '&#x26ed;'
-  var cursorLen = (cursor == "") ? 0 : 1;
-  sel.append(cursor);
-  function next(text) {
-    window.setTimeout(function() {
-      var nextChar = text.substring(0, 1);
-      var cursorLen = (cursor == "") ? 0 : 1;
-      if (nextChar == '~') {
-        nextChar = '';
-        cursorLen += 1;
-      }
-      if (nextChar != '^')
-        sel.html(sel.html().substring(0, sel.html().length - cursorLen) + nextChar + cursor);
-      if (text.length > 0) 
-        next(text.substring(1));
-      else {
-        sel.html(sel.html().substring(0, sel.html().length - cursorLen));
-        if (done)
-          done();
-      }
-    }, (0.5 + 0.7 * Math.random()) * speed);
-  }
-  next(text);
-}
-
-function inviteText() {
-  animateCursor($('#cursor1'), "^^^^^-- ^^^r h o n i & a l e x ^^--", function() {
-  animateCursor($('#cursor2'), "^^^^^NEW YORK^^~^~~^EARS NIGHT", function() {
-  animateCursor($('#cursor3'), "^^^^^December 30^^~1 @ ^^^^^9 PM", function() {
-  animateCursor($('#cursor4'), "^^^^^464 West Broadway #4 ^^^^'Soho Zendo'", function() {
-  $('#cursor1').animate({opacity: 0}, 3.0 * speed);
-  $('#cursor2').animate({opacity: 0}, 6.0 * speed);
-  $('#cursor3').animate({opacity: 0}, 4.0 * speed);
-  $('#cursor4').animate({opacity: 0}, 5.0 * speed);
-  $('#girl').animate({opacity: 0.5}, 20 * speed, "linear", function() {
-  $('#girl').animate({opacity: 0.0}, 40 * speed, "linear", function() {
-  $('#dude').animate({opacity: 0.6}, 20 * speed, "linear", function() {
-  $('#dude').animate({opacity: 0.0}, 40 * speed, "linear", function() {
-  end();
-  }); }); }); }); }); }); }); });
-}
-
-function hoverlicious(obj) {
-  obj.animate({"opacity": 0.1});
-  obj.hover(
-    function() { $(this).animate({"opacity": 1.0}); }, 
-    function() { $(this).animate({"opacity": 0.1}); } 
-  );
-}
-
-function end() {
-  animateCursor($('#happy'), "^^HAPPY ^^^^NEW ^^^^YEAR", function(){ 
-    $('#form').animate({opacity: 1});
-    hoverlicious($('#cursor1'));
-    hoverlicious($('#cursor2'));
-    hoverlicious($('#cursor3'));
-    hoverlicious($('#cursor4'));
-  }, "");
-}
-
-$(document).ready(function() {
-  animateLetters($('#number'), '2013', function() {pause(1); inviteText()});
-});
-</script>
 </body>
+
+<script>
+var speed = 100;
+
+function sleep(sec) {
+  return new Promise(resolve => setTimeout(resolve, sec * 1000));
+}
+
+async function countUp(el, start, val, time) {
+  let n = val - start + 1;
+  let t = n * (n + 1) / 2;
+  let d = n / 3;
+  let s = time / (d * n + t);
+  for (var num = 0; num <= n; ++num) {
+    let str = (start + num).toString().padStart(4, '0');
+    for (var i = 0; i < 4; ++i)
+      el.children[i].innerHTML = str.substring(i, i + 1);
+    await sleep((d + (n - num)) * s);
+  }
+}
+
+async function animateCursor(sel, text, space) {
+  if (!space) space = '&nbsp;'
+  let cursor = '¤';
+
+  sel.append(cursor);
+
+  for (let i = 0; i < text.length; ++i) {
+    var nextChar = text.substring(i, i + 1);
+    if (nextChar == ' ')
+      nextChar = space;
+    if (nextChar == '~') {
+      let h = sel.html();
+      sel.html(h.substring(0, h.length - 1 - cursor.length) + cursor);
+    }
+    else if (nextChar == '^')
+      ;
+    else {
+      let h = sel.html();
+      sel.html(h.substring(0, h.length - cursor.length) + nextChar + cursor);
+    }
+    await sleep((0.5 + 0.7 * Math.random()) * speed / 1000);
+  }
+
+  let h = sel.html();
+  sel.html(h.substring(0, h.length - cursor.length));
+}
+
+async function inviteText() {
+  await animateCursor($('#cursor1'), "^^^^^MISSION CONTROL: ^^^Liz & ^^Alex");
+  await animateCursor($('#cursor2'), "^^^^^OCCASION       : ^^^New York^^~^~~^ears Night");
+  await animateCursor($('#cursor3'), "^^^^^TEMPORAL COORDS: ^^^December 30^^~1 @ ^^^^^9 PM");
+  await animateCursor($('#cursor4'), "^^^^^SPATIAL COORDS : ^^^464 West Broadway #4");
+  await $('#dude').animate({opacity: 0.6}, 10 * speed, "linear").promise();
+  await sleep(0.5);
+  await $('#dude').animate({opacity: 0.0}, 20 * speed, "linear").promise();
+  await $('#girl').animate({opacity: 0.5}, 10 * speed, "linear").promise();
+  await sleep(0.5);
+  await $('#girl').animate({opacity: 0.0}, 20 * speed, "linear").promise();
+  await $('#cursor1').animate({opacity: 0}, 3.0 * speed).promise();
+  await $('#cursor2').animate({opacity: 0}, 6.0 * speed).promise();
+  await $('#cursor3').animate({opacity: 0}, 4.0 * speed).promise();
+  await $('#cursor4').animate({opacity: 0}, 5.0 * speed).promise();
+
+  $('#happy').css('display', 'flex');
+  await animateCursor($('#endtext'), "^^BRING THE FUTURE ^^^^YOU ^^^^^^^^WANT", " ");
+}
+
+async function onload(event) {
+  let number = document.getElementById('number');
+  await sleep(0.8);
+  await countUp(number, 2024, 2124, speed / 20);
+  await sleep(0.8);
+  number.animate({opacity: 0}, 800);
+  await sleep(0.4);
+  number.style.display = 'none';
+  await sleep(0.4);
+
+  let text = document.getElementById('text');
+  text.style.display = 'grid';
+  await inviteText();
+  text.style.display = 'none';
+
+  let link = document.getElementById('link');
+  await link.animate([{color: 'white'}, {color: 'red'}, {color: 'white'}], {duration: 3000, iterations: 1000});
+
+}
+
+window.addEventListener("load", onload);
+</script>
 </html>
