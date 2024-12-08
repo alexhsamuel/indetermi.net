@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+  <title>NYE 2124 with Liz &amp; Alex</title>
 <style>
 @font-face {
   font-family: "Mokoto";
@@ -135,7 +136,7 @@ input {
     <span id="cursor4" class="cursor"></span>
   </div>
 
-  <div id="happy">
+  <div id="happy" onclick="window.location.reload()">
     <div id="endtext"></div>
   </div>
   <img id="dude" src="cocktail.jpg" style="height: 100vh; position: fixed; right: 0; top: 0; opacity:0"></img>
@@ -205,9 +206,11 @@ async function inviteText() {
   await $('#dude').animate({opacity: 0.6}, 10 * speed, "linear").promise();
   await sleep(0.5);
   await $('#dude').animate({opacity: 0.0}, 20 * speed, "linear").promise();
+  await $('#dude').css('display', 'none');
   await $('#girl').animate({opacity: 0.5}, 10 * speed, "linear").promise();
   await sleep(0.5);
   await $('#girl').animate({opacity: 0.0}, 20 * speed, "linear").promise();
+  await $('#girl').css('display', 'none');
   await $('#cursor1').animate({opacity: 0}, 3.0 * speed).promise();
   await $('#cursor2').animate({opacity: 0}, 6.0 * speed).promise();
   await $('#cursor3').animate({opacity: 0}, 4.0 * speed).promise();
